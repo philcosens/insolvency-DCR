@@ -1,0 +1,70 @@
+:root {
+  color-scheme: light;
+  --dcrs-navy: #17324d;
+  --dcrs-muted: #505a5f;
+  --dcrs-pale: #f3f2f1;
+}
+
+* { box-sizing: border-box; }
+
+body { margin: 0; background: #fff; color: #0b0c0c; }
+button, input, textarea, select { font: inherit; }
+a:focus, button:focus, input:focus, textarea:focus, select:focus { outline: 3px solid transparent; box-shadow: 0 -2px #ffdd00, 0 4px #0b0c0c; }
+
+.dcrs-width-container { max-width: 1200px; margin: 0 auto; padding: 0 30px; }
+.dcrs-header { background: var(--dcrs-navy); color: white; }
+.dcrs-header__inner { display: flex; align-items: center; min-height: 64px; gap: 14px; }
+.dcrs-header__crest { width: 32px; height: 30px; filter: brightness(0) invert(1); }
+.dcrs-header__service { color: white; font-size: 1.25rem; font-weight: 700; text-decoration: none; }
+.dcrs-main { min-height: 65vh; padding-top: 32px; padding-bottom: 56px; }
+.dcrs-footer { border-top: 1px solid #b1b4b6; background: #f3f2f1; padding: 24px 0; color: #505a5f; }
+.dcrs-footer p { margin: 0; }
+.dcrs-case-meta { margin: 0 0 24px; color: var(--dcrs-muted); }
+.dcrs-stage-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: start; }
+.dcrs-stage-card { border: 1px solid #b1b4b6; border-top: 5px solid #1d70b8; padding: 24px; }
+.dcrs-stage-card--locked { border-top-color: #b1b4b6; background: #f8f8f8; color: #505a5f; }
+.dcrs-stage-card--submitted { border-top-color: #00703c; }
+.dcrs-stage-card__heading { display: flex; justify-content: space-between; gap: 16px; align-items: start; }
+.dcrs-stage-card__heading h2 { margin-bottom: 16px; }
+.dcrs-stage-list { margin-bottom: 0; }
+.dcrs-stage-list li { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-top: 1px solid #b1b4b6; }
+.dcrs-stage-list a { font-weight: 700; }
+.dcrs-stage-list__status { flex: 0 0 auto; color: #505a5f; font-size: 16px; }
+.dcrs-progress { margin: 0 0 20px; }
+.dcrs-progress__labels { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+.dcrs-progress__track { height: 10px; background: #f3f2f1; }
+.dcrs-progress__track span { display: block; height: 100%; background: #00703c; }
+.dcrs-question-layout { display: grid; grid-template-columns: minmax(230px, 290px) minmax(0, 1fr); gap: 40px; align-items: start; }
+.dcrs-question-nav { border-bottom: 1px solid #b1b4b6; }
+.dcrs-question-nav h2 { margin-bottom: 10px; }
+.dcrs-question-nav__list, .dcrs-question-nav__children { list-style: none; margin: 0; padding: 0; }
+.dcrs-question-nav__item { padding: 9px 0; border-top: 1px solid #b1b4b6; }
+.dcrs-question-nav__item--current { border-left: 4px solid #1d70b8; padding-left: 12px; }
+.dcrs-question-nav__link { display: block; line-height: 1.25; }
+.dcrs-question-nav__link[aria-current] { color: #0b0c0c; font-weight: 700; text-decoration: none; }
+.dcrs-question-nav__children { margin: 10px 0 0 8px; padding-left: 12px; }
+.dcrs-question-nav__status { display: block; margin-top: 3px; color: #505a5f; font-size: 16px; }
+.dcrs-question-content { min-width: 0; }
+.dcrs-question-content form { max-width: 760px; }
+.dcrs-evidence-list { padding-left: 20px; }
+.dcrs-evidence-list li { padding: 8px 0; }
+.dcrs-submission-banner { margin-bottom: 24px; }
+.dcrs-timeline { list-style: none; padding: 0; }
+.dcrs-timeline li { display: grid; grid-template-columns: 40px 1fr; gap: 12px; padding: 10px 0; }
+.dcrs-timeline__number { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: #768c95; color: white; font-weight: 700; }
+.dcrs-timeline p { margin: 6px 0 0; }
+.dcrs-actions { border-top: 1px solid #b1b4b6; margin-top: 24px; padding-top: 24px; }
+.dcrs-actions .govuk-button { margin-top: 12px; }
+.dcrs-testing { margin-top: 40px; border-top: 1px solid #b1b4b6; padding-top: 16px; }
+.dcrs-testing form { display: inline-block; margin: 8px 12px 0 0; }
+.dcrs-validation { color: #d4351c; font-weight: 700; }
+
+@media (max-width: 760px) {
+  .dcrs-width-container { padding: 0 15px; }
+  .dcrs-stage-grid, .dcrs-question-layout { grid-template-columns: 1fr; }
+  .dcrs-question-layout { gap: 24px; }
+  .dcrs-header__inner { min-height: 56px; }
+  .dcrs-header__service { font-size: 1.125rem; }
+  .dcrs-main { padding-top: 24px; }
+  .dcrs-stage-card { padding: 18px; }
+}

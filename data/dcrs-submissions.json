@@ -1,0 +1,2554 @@
+[
+  {
+    "number": 1,
+    "slug": "essential-insolvency-practitioner-information",
+    "title": "Insolvency Practitioner Information",
+    "submission": "essential",
+    "questions": [
+      {
+        "id": "essential-insolvency-practitioner-information-1",
+        "text": "Case Officer Full name",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": true,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 4
+      },
+      {
+        "id": "essential-insolvency-practitioner-information-2",
+        "text": "Case Officer Phone number",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": true,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 5
+      },
+      {
+        "id": "essential-insolvency-practitioner-information-3",
+        "text": "Case Officer Email address",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": true,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 6
+      },
+      {
+        "id": "essential-insolvency-practitioner-information-4",
+        "text": "Case type",
+        "type": "radio",
+        "options": [
+          "Administration",
+          "(Administrative) Receivership",
+          "Liquidation"
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 7
+      },
+      {
+        "id": "essential-insolvency-practitioner-information-5",
+        "text": "Relevant appointment date",
+        "type": "date",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": true,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 8
+      },
+      {
+        "id": "essential-insolvency-practitioner-information-6",
+        "text": "Creditor's report url",
+        "type": "url",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 9
+      },
+      {
+        "id": "essential-insolvency-practitioner-information-7",
+        "text": "Creditor reference",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 10
+      }
+    ]
+  },
+  {
+    "number": 2,
+    "slug": "essential-company-information",
+    "title": "Company Information",
+    "submission": "essential",
+    "questions": [
+      {
+        "id": "essential-company-information-1",
+        "text": "Company Number",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": true,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 13
+      },
+      {
+        "id": "essential-company-information-2",
+        "text": "Full name",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": true,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 14
+      },
+      {
+        "id": "essential-company-information-3",
+        "text": "Incorporation Date",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": true,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 15
+      },
+      {
+        "id": "essential-company-information-4",
+        "text": "Prinicple trading address (if different to registered address)",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": true,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 16
+      },
+      {
+        "id": "essential-company-information-5",
+        "text": "Is this a single insolvency or are you dealing with connected failures?",
+        "type": "radio",
+        "options": [
+          "Yes",
+          "No"
+        ],
+        "hint": "",
+        "required": true,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 17
+      }
+    ]
+  },
+  {
+    "number": 3,
+    "slug": "essential-director-information-individual",
+    "title": "Director Information (Individual)",
+    "submission": "essential",
+    "questions": [
+      {
+        "id": "essential-director-information-individual-1",
+        "text": "Title",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": true,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 20
+      },
+      {
+        "id": "essential-director-information-individual-2",
+        "text": "First name",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": true,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 21
+      },
+      {
+        "id": "essential-director-information-individual-3",
+        "text": "Last name",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": true,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 22
+      },
+      {
+        "id": "essential-director-information-individual-4",
+        "text": "Aliases",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": true,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 23
+      },
+      {
+        "id": "essential-director-information-individual-5",
+        "text": "Birth Date",
+        "type": "date",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": true,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 24
+      },
+      {
+        "id": "essential-director-information-individual-6",
+        "text": "Postal address",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": true,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 25
+      },
+      {
+        "id": "essential-director-information-individual-7",
+        "text": "Email address",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": true,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 26
+      },
+      {
+        "id": "essential-director-information-individual-8",
+        "text": "Telephone number",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": true,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 27
+      },
+      {
+        "id": "essential-director-information-individual-9",
+        "text": "Director deceased",
+        "type": "radio",
+        "options": [
+          "Yes",
+          "No"
+        ],
+        "hint": "",
+        "required": true,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 28
+      },
+      {
+        "id": "essential-director-information-individual-10",
+        "text": "Deceased date",
+        "type": "date",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 29
+      },
+      {
+        "id": "essential-director-information-individual-11",
+        "text": "Sole director?",
+        "type": "radio",
+        "options": [
+          "Yes",
+          "No"
+        ],
+        "hint": "",
+        "required": true,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 30
+      },
+      {
+        "id": "essential-director-information-individual-12",
+        "text": "Director registered with companies house?",
+        "type": "radio",
+        "options": [
+          "Yes",
+          "No"
+        ],
+        "hint": "",
+        "required": true,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 31
+      },
+      {
+        "id": "essential-director-information-individual-13",
+        "text": "Appointment date",
+        "type": "date",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": true,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 32
+      },
+      {
+        "id": "essential-director-information-individual-14",
+        "text": "Resignation date",
+        "type": "date",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": true,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 33
+      },
+      {
+        "id": "essential-director-information-individual-15",
+        "text": "Is there Evidence person acted as a director?",
+        "type": "radio",
+        "options": [
+          "Yes",
+          "No"
+        ],
+        "hint": "",
+        "required": true,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 34
+      },
+      {
+        "id": "essential-director-information-individual-16",
+        "text": "Is this the director's third or more company failure in the last 5 years?",
+        "type": "radio",
+        "options": [
+          "Yes",
+          "No"
+        ],
+        "hint": "",
+        "required": true,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 35
+      },
+      {
+        "id": "essential-director-information-individual-17",
+        "text": "Director personal guarantee for any of the company's debt?",
+        "type": "radio",
+        "options": [
+          "Yes",
+          "No"
+        ],
+        "hint": "",
+        "required": true,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 36
+      }
+    ]
+  },
+  {
+    "number": 4,
+    "slug": "essential-corporate-body-director",
+    "title": "Corporate Body Director",
+    "submission": "essential",
+    "questions": [
+      {
+        "id": "essential-corporate-body-director-1",
+        "text": "Is there a Corporate Body appointed as Director",
+        "type": "radio",
+        "options": [
+          "Yes",
+          "No"
+        ],
+        "hint": "",
+        "required": true,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 39
+      },
+      {
+        "id": "essential-corporate-body-director-2",
+        "text": "Name of the corporate director",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": true,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 40
+      },
+      {
+        "id": "essential-corporate-body-director-3",
+        "text": "Is this corporate body registered overseas?",
+        "type": "radio",
+        "options": [
+          "Yes",
+          "No"
+        ],
+        "hint": "",
+        "required": true,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 41
+      },
+      {
+        "id": "essential-corporate-body-director-4",
+        "text": "Name of the contact at corporate director",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": true,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 42
+      },
+      {
+        "id": "essential-corporate-body-director-5",
+        "text": "Correspondence postal address",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": true,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 43
+      },
+      {
+        "id": "essential-corporate-body-director-6",
+        "text": "Email address",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": true,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 44
+      },
+      {
+        "id": "essential-corporate-body-director-7",
+        "text": "Telephone number",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": true,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 45
+      },
+      {
+        "id": "essential-corporate-body-director-8",
+        "text": "Is this corporate body in any form of insolvency proceedings or dissolved?",
+        "type": "radio",
+        "options": [
+          "Yes",
+          "No"
+        ],
+        "hint": "",
+        "required": true,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 46
+      },
+      {
+        "id": "essential-corporate-body-director-9",
+        "text": "Insolvency type",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 47
+      },
+      {
+        "id": "essential-corporate-body-director-10",
+        "text": "Is this corporage body recorded as a director at Companies House?",
+        "type": "radio",
+        "options": [
+          "Yes",
+          "No"
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 49
+      },
+      {
+        "id": "essential-corporate-body-director-11",
+        "text": "Appointment date",
+        "type": "date",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 50
+      },
+      {
+        "id": "essential-corporate-body-director-12",
+        "text": "Resignation date",
+        "type": "date",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 51
+      },
+      {
+        "id": "essential-corporate-body-director-13",
+        "text": "Is there evidence to show that this person acted as a director of the company?",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 52
+      },
+      {
+        "id": "essential-corporate-body-director-14",
+        "text": "What eviden is there to show that the person acted as a director?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 53
+      },
+      {
+        "id": "essential-corporate-body-director-15",
+        "text": "Date they started acting as a director",
+        "type": "date",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 54
+      },
+      {
+        "id": "essential-corporate-body-director-16",
+        "text": "Is this the corporate body's third or more company failure in the last 5 years?",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 55
+      },
+      {
+        "id": "essential-corporate-body-director-17",
+        "text": "Company body quarantee for any of the company's debt",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 56
+      },
+      {
+        "id": "essential-corporate-body-director-18",
+        "text": "Has corporate body co-operated with your reasonable enquiries?",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 57
+      }
+    ]
+  },
+  {
+    "number": 5,
+    "slug": "essential-insolvency-information",
+    "title": "Insolvency Information",
+    "submission": "essential",
+    "questions": [
+      {
+        "id": "essential-insolvency-information-1",
+        "text": "Number of creditors?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": true,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 60
+      },
+      {
+        "id": "essential-insolvency-information-2",
+        "text": "Is there a majority creditor?",
+        "type": "radio",
+        "options": [
+          "Yes",
+          "No"
+        ],
+        "hint": "",
+        "required": true,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 61
+      },
+      {
+        "id": "essential-insolvency-information-3",
+        "text": "Who is the major creditor?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": true,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 62
+      },
+      {
+        "id": "essential-insolvency-information-4",
+        "text": "Best estimate of the company's deficiency?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": true,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 64
+      },
+      {
+        "id": "essential-insolvency-information-5",
+        "text": "Dividend to unsecured creditors?",
+        "type": "radio",
+        "options": [
+          "Yes",
+          "No"
+        ],
+        "hint": "",
+        "required": true,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 65
+      },
+      {
+        "id": "essential-insolvency-information-6",
+        "text": "Will secured creditors be paid in full?",
+        "type": "radio",
+        "options": [
+          "Yes",
+          "No"
+        ],
+        "hint": "",
+        "required": true,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 66
+      }
+    ]
+  },
+  {
+    "number": 6,
+    "slug": "essential-not-maintaining-acounting-records",
+    "title": "Not maintaining acounting records",
+    "submission": "essential",
+    "questions": [
+      {
+        "id": "essential-not-maintaining-acounting-records-1",
+        "text": "Is there evidence of not maintaing accounting records?",
+        "type": "radio",
+        "options": [
+          "Yes",
+          "No"
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 69
+      },
+      {
+        "id": "essential-not-maintaining-acounting-records-2",
+        "text": "In a few sentences explain what evidence there is of not maintaining accounting records.",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 70
+      }
+    ]
+  },
+  {
+    "number": 7,
+    "slug": "essential-insolvent-trading",
+    "title": "Insolvent trading",
+    "submission": "essential",
+    "questions": [
+      {
+        "id": "essential-insolvent-trading-1",
+        "text": "Is there evidence of insolvent trading?",
+        "type": "radio",
+        "options": [
+          "Yes",
+          "No"
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 73
+      },
+      {
+        "id": "essential-insolvent-trading-2",
+        "text": "In a few sentences explain what evidence there is of insolvent trading.",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 74
+      }
+    ]
+  },
+  {
+    "number": 8,
+    "slug": "essential-detrimental-transactions",
+    "title": "Detrimental transactions",
+    "submission": "essential",
+    "questions": [
+      {
+        "id": "essential-detrimental-transactions-1",
+        "text": "Is there evidence of detrimental transactions?",
+        "type": "radio",
+        "options": [
+          "Yes",
+          "No"
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 77
+      },
+      {
+        "id": "essential-detrimental-transactions-2",
+        "text": "In a few sentences explain what evidence there is of detrimental transactions",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 78
+      }
+    ]
+  },
+  {
+    "number": 9,
+    "slug": "essential-crown-misconduct",
+    "title": "Crown misconduct",
+    "submission": "essential",
+    "questions": [
+      {
+        "id": "essential-crown-misconduct-1",
+        "text": "Is there evidence of Crown misconduct?",
+        "type": "radio",
+        "options": [
+          "Yes",
+          "No"
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 81
+      },
+      {
+        "id": "essential-crown-misconduct-2",
+        "text": "In a few sentences explain what evidence there is of Crown misconduct.",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 82
+      }
+    ]
+  },
+  {
+    "number": 10,
+    "slug": "essential-undervalue-asset-disposals",
+    "title": "Undervalue asset disposals",
+    "submission": "essential",
+    "questions": [
+      {
+        "id": "essential-undervalue-asset-disposals-1",
+        "text": "Is there evidence of undervalue asset disposals?",
+        "type": "radio",
+        "options": [
+          "Yes",
+          "No"
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 85
+      },
+      {
+        "id": "essential-undervalue-asset-disposals-2",
+        "text": "In a few sentences explain what evidence there is of under value asset disposal.",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 86
+      }
+    ]
+  },
+  {
+    "number": 11,
+    "slug": "essential-phoenix-successor-trading",
+    "title": "Phoenix/successor trading",
+    "submission": "essential",
+    "questions": [
+      {
+        "id": "essential-phoenix-successor-trading-1",
+        "text": "Is there evidence of phoenix/successor trading?",
+        "type": "radio",
+        "options": [
+          "Yes",
+          "No"
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 89
+      },
+      {
+        "id": "essential-phoenix-successor-trading-2",
+        "text": "In a few sentences explain what evidence there is of phoenix/successor trading.",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 90
+      }
+    ]
+  },
+  {
+    "number": 12,
+    "slug": "essential-failure-to-provide-goods-services",
+    "title": "Failure to provide goods/services",
+    "submission": "essential",
+    "questions": [
+      {
+        "id": "essential-failure-to-provide-goods-services-1",
+        "text": "Is there evidence of failure to provide goods or services?",
+        "type": "radio",
+        "options": [
+          "Yes",
+          "No"
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 93
+      },
+      {
+        "id": "essential-failure-to-provide-goods-services-2",
+        "text": "In a few sentences explain what evidence there is of failure to provide goods or services.",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 94
+      }
+    ]
+  },
+  {
+    "number": 13,
+    "slug": "essential-covid-financial-support-misconduct",
+    "title": "Covid financial support misconduct",
+    "submission": "essential",
+    "questions": [
+      {
+        "id": "essential-covid-financial-support-misconduct-1",
+        "text": "Is there evidence of Covid financial support misconduct?",
+        "type": "radio",
+        "options": [
+          "Yes",
+          "No"
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 97
+      },
+      {
+        "id": "essential-covid-financial-support-misconduct-2",
+        "text": "In a few sentences explain what evidence there is of insolvent trading.",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 98
+      }
+    ]
+  },
+  {
+    "number": 14,
+    "slug": "essential-acting-as-a-director-whilst-disqualified-or-bankrupt",
+    "title": "Acting as a director whilst disqualified or bankrupt",
+    "submission": "essential",
+    "questions": [
+      {
+        "id": "essential-acting-as-a-director-whilst-disqualified-or-bankrupt-1",
+        "text": "Is there evidence of a director acting whilst disqualified or bankrupt?",
+        "type": "radio",
+        "options": [
+          "Yes",
+          "No"
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 101
+      },
+      {
+        "id": "essential-acting-as-a-director-whilst-disqualified-or-bankrupt-2",
+        "text": "In a few sentences explain what evidence there is of the a Director whilst disqualified or bankrupt.",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 102
+      }
+    ]
+  },
+  {
+    "number": 15,
+    "slug": "essential-s216-breaches",
+    "title": "S216 breaches",
+    "submission": "essential",
+    "questions": [
+      {
+        "id": "essential-s216-breaches-1",
+        "text": "Is there evidence of S216 breaches?",
+        "type": "radio",
+        "options": [
+          "Yes",
+          "No"
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 105
+      },
+      {
+        "id": "essential-s216-breaches-2",
+        "text": "In a few sentences explain what evidence there is of S216 breaches.",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 106
+      }
+    ]
+  },
+  {
+    "number": 16,
+    "slug": "essential-other-investigations-or-potential-criminality",
+    "title": "Other investigations or potential criminality",
+    "submission": "essential",
+    "questions": [
+      {
+        "id": "essential-other-investigations-or-potential-criminality-1",
+        "text": "Are there other investigations or potential criminality?",
+        "type": "radio",
+        "options": [
+          "Yes",
+          "No"
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 109
+      },
+      {
+        "id": "essential-other-investigations-or-potential-criminality-2",
+        "text": "In a few sentences explain what evidence there is of other investigations or criminality",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 1",
+        "sourceRow": 110
+      }
+    ]
+  },
+  {
+    "number": 17,
+    "slug": "section-17-general-further-information",
+    "title": "General further information",
+    "submission": "further",
+    "questions": [
+      {
+        "id": "section-17-1",
+        "text": "Date Trading Started",
+        "type": "date",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 12
+      },
+      {
+        "id": "section-17-2",
+        "text": "Date Trading Ended",
+        "type": "date",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 13
+      },
+      {
+        "id": "section-17-3",
+        "text": "Date insolvency commenced or company dissolved",
+        "type": "date",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 14
+      },
+      {
+        "id": "section-17-4",
+        "text": "Bank name",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 15
+      },
+      {
+        "id": "section-17-5",
+        "text": "Sort code",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 16
+      },
+      {
+        "id": "section-17-6",
+        "text": "Account number",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 17
+      }
+    ]
+  },
+  {
+    "number": 18,
+    "slug": "section-18-not-mainting-acounting-records",
+    "title": "Not mainting acounting records",
+    "submission": "further",
+    "questions": [
+      {
+        "id": "section-18-1",
+        "text": "Has the director delivered up any records to date?",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 21
+      },
+      {
+        "id": "section-18-2",
+        "text": "What accounting records do you currently have in your possession?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 22
+      },
+      {
+        "id": "section-18-3",
+        "text": "Please provide copies of your request to the director(s) to deliver up records.",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 23
+      },
+      {
+        "id": "section-18-4",
+        "text": "What is the detriment caused by the lack of books and records?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 24
+      },
+      {
+        "id": "section-18-5",
+        "text": "Details of any unexplained transactions you are unable to account for.",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 25
+      },
+      {
+        "id": "section-18-6",
+        "text": "Could you provide evidence of these transactions, including a detailed bank statement analysis and copies of the relevant bank statements covering the period in question? (If available).",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 26
+      },
+      {
+        "id": "section-18-7",
+        "text": "What explanation has been provided by the director(s) as to why books and records have not been delivered up?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 27
+      }
+    ]
+  },
+  {
+    "number": 19,
+    "slug": "section-19-insolvent-trading",
+    "title": "Insolvent trading",
+    "submission": "further",
+    "questions": [
+      {
+        "id": "section-19-1",
+        "text": "When did the directors know, or when should they have known, that the company was insolvent?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 31
+      },
+      {
+        "id": "section-19-2",
+        "text": "What evidence is available to support this?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 32
+      },
+      {
+        "id": "section-19-3",
+        "text": "On what date did the company become cashflow insolvent, and can you provide evidence?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 33
+      },
+      {
+        "id": "section-19-4",
+        "text": "Did the director(s) personally inject funds into the business?",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 34
+      },
+      {
+        "id": "section-19-5",
+        "text": "Did the director(s) seek independent advice from professionals?",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 35
+      },
+      {
+        "id": "section-19-6",
+        "text": "Who was disadvantaged by the insolvent trading?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 36
+      },
+      {
+        "id": "section-19-7",
+        "text": "Did insolvent trading result in an increase in liabilities? If so, by how much?",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 37
+      },
+      {
+        "id": "section-19-8",
+        "text": "Why did the director(s) decide to continue trading despite the company's insolvent position? What measures did they anticipate implementing to rectify the insolvency?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 38
+      },
+      {
+        "id": "section-19-9",
+        "text": "Could you please provide the prepared financial statements for the past two years?",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 39
+      }
+    ]
+  },
+  {
+    "number": 20,
+    "slug": "section-20-detrimental-transactions-including-director-renumeration-matters",
+    "title": "Detrimental transactions (including director renumeration matters)",
+    "submission": "further",
+    "questions": [
+      {
+        "id": "section-20-1",
+        "text": "What transactions have been identified as detrimental?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 44
+      },
+      {
+        "id": "section-20-2",
+        "text": "Could you provide evidence of these transactions, including a detailed bank statement analysis and copies of the relevant bank statements for the period in question? (If available).",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 45
+      },
+      {
+        "id": "section-20-3",
+        "text": "To whom were the payments made?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 46
+      },
+      {
+        "id": "section-20-4",
+        "text": "Was the company insolvent at the time of the transaction(s)?",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 47
+      },
+      {
+        "id": "section-20-5",
+        "text": "Did the company become insolvent because of the transaction(s)?",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 48
+      },
+      {
+        "id": "section-20-6",
+        "text": "Were payments to creditors being made promptly as they fell due?",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 49
+      },
+      {
+        "id": "section-20-7",
+        "text": "Was there any outstanding debt to other creditors during the time these transactions took place?",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 50
+      },
+      {
+        "id": "section-20-8",
+        "text": "Who was advantaged, and in what way, when, and by how much?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 51
+      },
+      {
+        "id": "section-20-9",
+        "text": "Who was disadvantaged, and in what way, when, and by how much?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 52
+      },
+      {
+        "id": "section-20-10",
+        "text": "Has any action been taken to recover the sums?",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 53
+      },
+      {
+        "id": "section-20-11",
+        "text": "Could you confirm how the director benefited and by how much?",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 56
+      },
+      {
+        "id": "section-20-12",
+        "text": "Over what period did the transactions occur?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 57
+      },
+      {
+        "id": "section-20-13",
+        "text": "Who, if anyone, has been disadvantaged, and to what extent?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 58
+      },
+      {
+        "id": "section-20-14",
+        "text": "Were payments to creditors being made promptly as they fell due?",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 59
+      },
+      {
+        "id": "section-20-15",
+        "text": "Could you provide evidence of these transactions, including a detailed bank statement analysis and copies of the relevant bank statements covering the period in question? (If available).",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 60
+      },
+      {
+        "id": "section-20-16",
+        "text": "Has any action been taken to recover the sums?",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 61
+      },
+      {
+        "id": "section-20-17",
+        "text": "If the amounts relate to an outstanding Director’s Loan Account (DLA), please confirm: \n\ta. Over what period did the DLA accrue? \n\tb. Did the director also receive wages in addition to the DLA? \n\tc. Was the DLA the director's sole form of remuneration? \n\td. Was the DLA converted to dividends, and if so, was this an appropriate and reasonable method of remuneration? \n\te. If the DLA was instead paid as a salary, would it be considered unreasonable or excessive? \n\tf. Has there been any communication with the director regarding the recovery of these funds?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 62
+      }
+    ]
+  },
+  {
+    "number": 21,
+    "slug": "section-21-crown-misconduct",
+    "title": "Crown misconduct",
+    "submission": "further",
+    "questions": [
+      {
+        "id": "section-21-1",
+        "text": "Please provide details of the amount owed to HMRC, including the specific taxes it relates to, and the periods covered.",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 66
+      },
+      {
+        "id": "section-21-2",
+        "text": "Provide a copy of HMRC's Proof of Debt, along with any other relevant documents in your possession related to the Crown debt (e.g., demand letters, Statement of Liabilities, Winding-up Petition, etc.).",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 67
+      },
+      {
+        "id": "section-21-3",
+        "text": "Do the bank statements show payments made to HMRC in the final 12 months of trading? If so, how much?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 68
+      },
+      {
+        "id": "section-21-4",
+        "text": "Is there any evidence that HMRC was treated unfairly compared to other creditors? If so, please provide further details.",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 69
+      },
+      {
+        "id": "section-21-5",
+        "text": "Was the company engaged in a Time to Pay agreement with HMRC? If so, please provide the relevant details.",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 70
+      },
+      {
+        "id": "section-21-6",
+        "text": "Could you please provide a copy of the Aged Creditors Listing?",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 71
+      },
+      {
+        "id": "section-21-7",
+        "text": "Please provide a detailed bank statement analysis showing payments made to HMRC, along with copies of the relevant bank statements for the last two years (If available).",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 72
+      }
+    ]
+  },
+  {
+    "number": 22,
+    "slug": "section-22-undervalue-asset-disposals",
+    "title": "Undervalue asset disposals",
+    "submission": "further",
+    "questions": [
+      {
+        "id": "section-22-1",
+        "text": "What asset(s) were sold?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 76
+      },
+      {
+        "id": "section-22-2",
+        "text": "When did the sale of the asset(s) occur?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 77
+      },
+      {
+        "id": "section-22-3",
+        "text": "What was the sale price of the asset(s)?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 78
+      },
+      {
+        "id": "section-22-4",
+        "text": "Who purchased the asset(s)?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 79
+      },
+      {
+        "id": "section-22-5",
+        "text": "How were the sale proceeds utilised?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 80
+      },
+      {
+        "id": "section-22-6",
+        "text": "What do you believe to be the true market value of the asset(s), and what evidence or reasoning supports this assessment?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 81
+      },
+      {
+        "id": "section-22-7",
+        "text": "What evidence is available to support the asset disposal? Please provide a detailed bank statement analysis and copies of the relevant bank statements for the transactions in question, or any other supporting documentation (If available).",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 82
+      },
+      {
+        "id": "section-22-8",
+        "text": "Has any action been initiated to recover the amount in question? If so, please provide details.",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 83
+      }
+    ]
+  },
+  {
+    "number": 23,
+    "slug": "section-23-phoenix-successor-trading",
+    "title": "Phoenix/successor trading",
+    "submission": "further",
+    "questions": [
+      {
+        "id": "section-23-1",
+        "text": "Please provide details of any detriment caused to this company and/or its creditors because of the successor trading.",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 87
+      },
+      {
+        "id": "section-23-2",
+        "text": "If this company traded in the same (or a similar) manner as the related failed companies, please provide details, including any differences in how this company was managed, operated, or funded.",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 88
+      },
+      {
+        "id": "section-23-3",
+        "text": "Is there any indication of potential ongoing or fraudulent activity related to the successor trading?",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 89
+      },
+      {
+        "id": "section-23-4",
+        "text": "Is there any evidence or suggestion of repeated misconduct, majority creditor involvement, or other potential misfeasance or breaches of duty?",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 90
+      },
+      {
+        "id": "section-23-5",
+        "text": "If the Police are not investigating, which other regulator is currently involved, or which regulator should be investigating this matter?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 92
+      },
+      {
+        "id": "section-23-6",
+        "text": "Have they provided confirmation regarding the nature and outcome of their investigations?",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 93
+      },
+      {
+        "id": "section-23-7",
+        "text": "If the investigation is ongoing, do you have a contact email address or telephone number for the person handling the investigation?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 94
+      },
+      {
+        "id": "section-23-8",
+        "text": "Are there any other matters that should be brought to the attention of the Insolvency Service?",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 95
+      }
+    ]
+  },
+  {
+    "number": 24,
+    "slug": "section-24-failure-to-provide-goods-services",
+    "title": "Failure to provide goods/services",
+    "submission": "further",
+    "questions": [
+      {
+        "id": "section-24-1",
+        "text": "What did the company fail to provide?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 99
+      },
+      {
+        "id": "section-24-2",
+        "text": "What is the total value of these transactions?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 100
+      },
+      {
+        "id": "section-24-3",
+        "text": "Over what period did these transactions occur?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 101
+      },
+      {
+        "id": "section-24-4",
+        "text": "When were the goods or services originally due to be supplied, and what reasons were given for their non-delivery?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 102
+      },
+      {
+        "id": "section-24-5",
+        "text": "How many complaints have been received from customers, and what is the total value of those complaints?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 103
+      },
+      {
+        "id": "section-24-6",
+        "text": "Could you provide copies of the customer complaints?",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 104
+      },
+      {
+        "id": "section-24-7",
+        "text": "Please provide evidence that would demonstrate that customers were misled or given false assurances.",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 105
+      },
+      {
+        "id": "section-24-8",
+        "text": "I understand that the company failed to comply with its statutory or contractual obligations to safeguard or ring-fence customer funds. Could you provide copies of the company's contracts, Terms and Conditions, or any other relevant documents that would evidence this position?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 106
+      },
+      {
+        "id": "section-24-9",
+        "text": "How were the monies/deposits utilized (e.g., for general trading expenses, or did the director personally benefit in some way)?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 107
+      },
+      {
+        "id": "section-24-10",
+        "text": "Has any action been initiated to recover the sums?",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 108
+      },
+      {
+        "id": "section-24-11",
+        "text": "Please provide the full names and company reference numbers (if known) of the related failed companies.",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 110
+      },
+      {
+        "id": "section-24-12",
+        "text": "If this company traded in the same (or a similar) manner to the related failed companies, please provide details, along with any differences in how this company was managed, operated, or funded.",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 111
+      },
+      {
+        "id": "section-24-13",
+        "text": "Is there any evidence or indication of phoenixism?",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 112
+      },
+      {
+        "id": "section-24-14",
+        "text": "Is there any evidence or indication of repeated misconduct, majority creditor involvement, or other potential misfeasance or breaches of duty?",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 113
+      },
+      {
+        "id": "section-24-15",
+        "text": "Was there, or does there appear to have been, any reasonable prospect of this company being successful?",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 114
+      },
+      {
+        "id": "section-24-16",
+        "text": "At what point does it appear the director knew, or should have known, that this company was insolvent?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 115
+      }
+    ]
+  },
+  {
+    "number": 25,
+    "slug": "section-25-covid-financial-support-misconduct",
+    "title": "Covid financial support misconduct",
+    "submission": "further",
+    "questions": [
+      {
+        "id": "section-25-1",
+        "text": "Details of the coronavirus support scheme(s) received by the company, including the date and amount received.",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 121
+      },
+      {
+        "id": "section-25-2",
+        "text": "If the company received a BBL, did it meet the criteria (see below)? \n\t* The company was based in the UK, established, and operating before 1 March 2020. \n\t* The company's trading was adversely impacted by the coronavirus. \n\t* It had not applied for another BBL.",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 122
+      },
+      {
+        "id": "section-25-3",
+        "text": "In making the BBL application, was the company's turnover for 2019 overstated by 25% or more? If so, please provide: \n\t* Details of the company's turnover for 2019 (and if relevant for 2020), and a copy of the full accounts or if full accounts are unavailable, copy bank statements (not excel statements/analysis - unless provided by the bank) showing the company's turnover during the calendar year 2019. \n\t* Alternatively, if full accounts or bank statements have not been provided, has the director provided an explanation for the lack records and details of any action (including enforcement) taken to obtain these records?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 123
+      },
+      {
+        "id": "section-25-4",
+        "text": "If the company was incorporated or stated to have commenced trading during 2019/2020: \n\t* Is there evidence that the company was actively trading on or before 1 March 2020? Please provide details of the supporting documentation. \n\t* Due to a lack of prior trading history, the company would have been able to use estimated turnover anticipated for 2020 in the BBL application. Has the director provided an explanation of how the turnover was estimated and does it appear to have been realistic?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 124
+      },
+      {
+        "id": "section-25-5",
+        "text": "Were any of the BBL funds paid to the director or connected parties? If so, please provide a breakdown of these payments or highlight them in your bank analysis. \n\t* What explanation has the director provided for these payments? \n\t* Since these payments have been made, has the director or connected party paid any funds into the company? If so, please provide details. \n\t* Whether any recovery action is being taken in this matter?",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 125
+      },
+      {
+        "id": "section-25-6",
+        "text": "If the company did not meet the criteria for a BBL or overstated the turnover in the BBL application, please provide a copy of the BBL application and agreement. If these are not currently available, please let me know the timeframe of when they will be available.",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 126
+      },
+      {
+        "id": "section-25-7",
+        "text": "Since the receipt of the BBL, has the company continued to receive regular income and make regular payments to its creditors? If not, what explanation has the director provided for this apparent lack of trading?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 127
+      },
+      {
+        "id": "section-25-8",
+        "text": "Please provide bank statements and your bank analysis showing all receipts and payments covering the three-month period prior to the receipt of the BBL and until liquidation.",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 128
+      },
+      {
+        "id": "section-25-9",
+        "text": "Has the company made any repayments of the BBL? If so, please provide details.",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 129
+      },
+      {
+        "id": "section-25-10",
+        "text": "Any other information, which you consider is relevant in this case.",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 130
+      }
+    ]
+  },
+  {
+    "number": 26,
+    "slug": "section-26-acting-as-a-director-whilst-disqualified-or-bankrupt",
+    "title": "Acting as a director whilst disqualified or bankrupt",
+    "submission": "further",
+    "questions": [
+      {
+        "id": "section-26-1",
+        "text": "What evidence do you have to demonstrate that the director acted on behalf of the company while being disqualified or bankrupt?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 134
+      },
+      {
+        "id": "section-26-2",
+        "text": "Are there any communications, meeting minutes, or other records that indicate the disqualified/bankrupt director was making decisions or influencing the company's operations? If so, please provide copies of these documents.",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 135
+      },
+      {
+        "id": "section-26-3",
+        "text": "Do the bank statements indicate payments made to the disqualified or bankrupt director? If so, please provide a detailed bank statement analysis of these payments, along with copies of the relevant bank statements for the period in question (If available).",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 136
+      },
+      {
+        "id": "section-26-4",
+        "text": "Is there a connection between the appointed directors of the company and the disqualified or bankrupt director (e.g., a family relationship)? If so, please provide further details.",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 137
+      }
+    ]
+  },
+  {
+    "number": 27,
+    "slug": "section-27-s216-breaches",
+    "title": "S216 breaches",
+    "submission": "further",
+    "questions": [
+      {
+        "id": "section-27-1",
+        "text": "Could you confirm the name and company number of the company that is in breach?",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 141
+      },
+      {
+        "id": "section-27-2",
+        "text": "Did the company or individual purchase the business, assets, or trading name of the liquidated company? If so, was this purchase communicated to the creditors?",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 142
+      },
+      {
+        "id": "section-27-3",
+        "text": "Do any of the statutory exemptions apply?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 143
+      },
+      {
+        "id": "section-27-4",
+        "text": "Was the director informed about the restrictions under Section 216? If so, how was this communicated (e.g., verbally, by letter, email, etc.)?",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 144
+      },
+      {
+        "id": "section-27-5",
+        "text": "Is the alleged breach related to the use of a trading style name rather than a registered company name?",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 145
+      },
+      {
+        "id": "section-27-6",
+        "text": "Does the successor business operate as a sole trader, partnership, or other entity rather than a limited company?",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 146
+      }
+    ]
+  },
+  {
+    "number": 28,
+    "slug": "section-28-other-investigations-or-potential-criminality",
+    "title": "Other investigations or potential criminality",
+    "submission": "further",
+    "questions": [
+      {
+        "id": "section-28-1",
+        "text": "If the Police are not investigating, which other regulator is currently involved, or which regulator should be investigating this matter?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 150
+      },
+      {
+        "id": "section-28-2",
+        "text": "Have they provided confirmation regarding the nature and outcome of their investigations?",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 151
+      },
+      {
+        "id": "section-28-3",
+        "text": "If the investigation is ongoing, do you have a contact email address or telephone number for the person handling the investigation?",
+        "type": "text",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 152
+      },
+      {
+        "id": "section-28-4",
+        "text": "Are there any other matters that should be brought to the attention of the Insolvency Service?",
+        "type": "radio",
+        "options": [
+
+        ],
+        "hint": "",
+        "required": false,
+        "validation": "",
+        "sourceSheet": "Submission 2",
+        "sourceRow": 153
+      }
+    ]
+  }
+]
