@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import "./stylesheets/govuk-frontend.min.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -11,6 +10,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="stylesheet" href="/stylesheets/govuk-frontend.min.css" />
+      </head>
       <body>{children}</body>
     </html>
   );
