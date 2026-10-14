@@ -1,235 +1,115 @@
 "use client";
 
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { FormEvent, ReactNode, useEffect, useState } from "react";
 import submissionData from "../data/dcrs-submissions.json";
 
 type Question = (typeof submissionData)[number]["questions"][number];
 type Section = (typeof submissionData)[number];
-type Answers = Record<string, string | string[]>;
-type PrototypeState = {
+type Answer = string | string[];
+type Answers = Record<string, Answer>;
+type Evidence = { name: string; size: number; date: string };
+type Store = {
   answers: Answers;
-  submittedId: string | null;
-  furtherActive: boolean;
-  evidence: string[];
+  essentialSubmissionId: string | null;
+  furtherSubmissionId: string | null;
+  initialAssessmentPassed: boolean;
+  furtherInformationStarted: boolean;
+  evidence: Evidence[];
 };
 
-const storageKey = "dcrs-node-prototype-v1";
-const emptyState: PrototypeState = { answers: {}, submittedId: null, furtherActive: false, evidence: [] };
 const sections = submissionData as Section[];
-const essentialSections = sections.filter((section) => section.submission === "essential");
-const furtherSections = sections.filter((section) => section.submission === "further");
+const essentialSections = sections.filter((s) => s.submission === "essential");
+const allFurtherSections = sections.filter((s) => s.submission === "further");
+const storageKey = "dcrs-node-prototype-v2";
+const emptyStore: Store = { answers: {}, essentialSubmissionId: null, furtherSubmissionId: null, initialAssessmentPassed: false, furtherInformationStarted: false, evidence: [] };
 
-function sectionPath(section: Section, question = 1) {
-  return `/section/${section.number}/question/${question}`;
+function hasAnswer(value: Answer | undefined) { return Array.isArray(value) ? value.length > 0 : Boolean(value?.trim()); }
+function sectionPath(section: Section, question = 1) { return `/section/${section.number}/question/${question}`; }
+function answerText(value: Answer | undefined) { return Array.isArray(value) ? value.join(", ") : value ?? ""; }
+function idFor(prefix: string) { return `${prefix}-${new Date().getFullYear()}-${String(Date.now()).slice(-6)}`; }
+function sectionAvailable(section: Section, answers: Answers) {
+  if (section.submission === "essential" || section.number === 17) return true;
+  const trigger = essentialSections.find((s) => s.number === section.number - 12)?.questions[0];
+  return Boolean(trigger && answerText(answers[trigger.id]).toLowerCase() === "yes");
 }
-
-function displayNumber(section: Section) {
-  return section.submission === "further" ? section.number - essentialSections.length : section.number;
+function progress(section: Section, answers: Answers) {
+  const questions = section.questions.filter((q) => q.type !== "action");
+  const conditional = section.submission === "essential" && section.number >= 6;
+  const visible = conditional && answerText(answers[questions[0]?.id]).toLowerCase() !== "yes" ? questions.slice(0, 1) : questions;
+  const required = visible.filter((q) => q.required);
+  const counted = required.length ? required : visible;
+  const completed = counted.filter((q) => hasAnswer(answers[q.id])).length;
+  return { completed, total: counted.length, status: completed === counted.length && counted.length > 0 ? "Completed" : completed > 0 ? "In progress" : "Not started" };
 }
+function allProgress(items: Section[], answers: Answers) { return items.reduce((sum, section) => sum + (progress(section, answers).status === "Completed" ? 1 : 0), 0); }
 
-function getProgress(section: Section, answers: Answers) {
-  const required = section.questions.filter((question) => question.required);
-  const total = required.length || section.questions.length;
-  const completed = required.length
-    ? required.filter((question) => hasAnswer(answers[question.id])).length
-    : section.questions.filter((question) => hasAnswer(answers[question.id])).length;
-  return { completed, total, status: completed === total ? "Completed" : completed > 0 ? "In progress" : "Not started" };
+function Header({ unread }: { unread: number }) {
+  return <><header className="govuk-header dcrs-header" role="banner"><div className="govuk-header__container govuk-width-container dcr-site-width-container"><div className="govuk-header__content"><a className="govuk-header__link govuk-header__link--service-name" href="/">Director Conduct Reporting Service</a><nav className="dcrs-header__nav" aria-label="Service navigation"><a href="/notifications" className="dcrs-notifications-link"><span aria-hidden="true">♧</span> Notifications {unread > 0 && <strong className="dcrs-notification-count">{unread}</strong>}</a></nav></div></div></header><div className="govuk-phase-banner"><div className="govuk-width-container dcr-site-width-container"><p className="govuk-phase-banner__content"><strong className="govuk-tag govuk-phase-banner__content__tag">BETA</strong><span className="govuk-phase-banner__text">This is a prototype service.</span></p></div></div></>;
 }
+function Footer() { return <footer className="govuk-footer dcrs-footer" role="contentinfo"><div className="govuk-width-container dcr-site-width-container"><div className="govuk-footer__meta"><p className="govuk-body-s">Director Conduct Reporting Service prototype</p></div></div></footer>; }
+function Tag({ children, colour = "grey" }: { children: string; colour?: string }) { return <strong className={`govuk-tag govuk-tag--${colour}`}>{children}</strong>; }
+function Breadcrumbs({ items }: { items: { label: string; href?: string }[] }) { return <nav className="govuk-breadcrumbs" aria-label="Breadcrumb"><ol className="govuk-breadcrumbs__list">{items.map((item, i) => <li className="govuk-breadcrumbs__list-item" key={item.label}>{item.href && i < items.length - 1 ? <a className="govuk-breadcrumbs__link" href={item.href}>{item.label}</a> : <span aria-current="page">{item.label}</span>}</li>)}</ol></nav>; }
+function Progress({ title, completed, total }: { title: string; completed: number; total: number }) { const percent = total ? Math.round(completed / total * 100) : 0; return <div className="dcrs-stage-progress" role="progressbar" aria-label={`${title} progress`} aria-valuemin={0} aria-valuemax={total} aria-valuenow={completed} aria-valuetext={`${completed} of ${total} sections complete`}><div className="dcrs-stage-progress__labels"><span>{completed} of {total} sections complete</span><span>{percent}%</span></div><div className="dcrs-stage-progress__track" aria-hidden="true"><span style={{ width: `${percent}%` }} /></div></div>; }
+function Status({ status }: { status: string }) { return <span className={`dcrs-status dcrs-status--${status.toLowerCase().replace(" ", "-")}`}>{status}</span>; }
+function StageItem({ section, answers }: { section: Section; answers: Answers }) { const p = progress(section, answers); return <li className="dcrs-stage-list__item"><a className="govuk-link" href={sectionPath(section)}><span>{section.submission === "further" ? "" : `${section.number}. `}{section.title}</span><span className="dcrs-stage-list__detail"><Status status={p.status} /><span>{p.completed} of {p.total} questions</span></span></a></li>; }
+function EvidenceItem({ count }: { count: number }) { return <li className="dcrs-stage-list__item"><a className="govuk-link" href="/supporting-evidence"><span>Supporting evidence</span><span className="dcrs-stage-list__detail"><Status status={count ? "Completed" : "Not started"} /><span>{count ? `${count} file${count === 1 ? "" : "s"}` : "No files uploaded"}</span></span></a></li>; }
 
-function hasAnswer(answer: string | string[] | undefined) {
-  return Array.isArray(answer) ? answer.length > 0 : Boolean(answer?.trim());
-}
-
-function DcrsHeader() {
-  return <header className="dcrs-header"><div className="dcrs-width-container dcrs-header__inner">
-    <img className="dcrs-header__crest" src="/assets/images/govuk-crest.svg" alt="" />
-    <a className="dcrs-header__service" href="/">Director Conduct Reporting Service</a>
-  </div></header>;
-}
-
-function DcrsFooter() {
-  return <footer className="dcrs-footer"><div className="dcrs-width-container"><p className="govuk-body-s">DCRS prototype · GOV.UK styles</p></div></footer>;
-}
-
-function Tag({ children, colour = "grey" }: { children: string; colour?: string }) {
-  const tagClass = colour === "green" ? "govuk-tag--green" : colour === "blue" ? "govuk-tag--blue" : "govuk-tag--grey";
-  return <strong className={`govuk-tag ${tagClass}`}>{children}</strong>;
-}
-
-function Progress({ title, completed, total }: { title: string; completed: number; total: number }) {
-  const percent = total ? Math.round((completed / total) * 100) : 0;
-  return <div className="dcrs-progress" role="progressbar" aria-valuemin={0} aria-valuemax={total} aria-valuenow={completed} aria-valuetext={`${completed} of ${total} sections complete`} aria-label={`${title} progress`}>
-    <div className="govuk-body dcrs-progress__labels"><span>{completed} of {total} sections complete</span><span>{percent}%</span></div>
-    <div className="dcrs-progress__track" aria-hidden="true"><span style={{ width: `${percent}%` }} /></div>
-  </div>;
-}
-
-export default function DcrsApp({ initialPath }: { initialPath: string }) {
-  const [store, setStore] = useState<PrototypeState>(emptyState);
+function DcrsApp({ initialPath }: { initialPath: string }) {
+  const [store, setStore] = useState<Store>(emptyStore);
   const [ready, setReady] = useState(false);
-  const [testToolsOpen, setTestToolsOpen] = useState(false);
-  const [notice, setNotice] = useState("");
   const path = `/${initialPath.split("/").filter(Boolean).join("/")}`;
-
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem(storageKey);
-      if (saved) setStore({ ...emptyState, ...JSON.parse(saved) as Partial<PrototypeState> });
-    } catch { /* Start with a clean prototype if browser storage is unavailable. */ }
-    setReady(true);
-  }, []);
-
-  const persist = (next: PrototypeState) => {
-    setStore(next);
-    try { localStorage.setItem(storageKey, JSON.stringify(next)); } catch { /* Prototype remains usable for this session. */ }
-  };
-  const updateAnswer = (id: string, value: string | string[]) => persist({ ...store, answers: { ...store.answers, [id]: value } });
-
-  const essentialProgress = useMemo(() => essentialSections.map((section) => getProgress(section, store.answers)), [store.answers]);
-  const furtherProgress = useMemo(() => furtherSections.map((section) => getProgress(section, store.answers)), [store.answers]);
-  const essentialCompleted = essentialProgress.filter((item) => item.status === "Completed").length + (store.evidence.length ? 1 : 0);
+  const unread = 2;
+  useEffect(() => { try { const saved = localStorage.getItem(storageKey); if (saved) setStore({ ...emptyStore, ...JSON.parse(saved) as Partial<Store> }); } catch { /* Keep the prototype usable if storage is unavailable. */ } setReady(true); }, []);
+  const save = (next: Store) => { setStore(next); try { localStorage.setItem(storageKey, JSON.stringify(next)); } catch { /* Session state still works. */ } };
+  const update = (id: string, value: Answer) => save({ ...store, answers: { ...store.answers, [id]: value } });
+  const availableFurther = allFurtherSections.filter((s) => sectionAvailable(s, store.answers));
+  const essentialCompleted = allProgress(essentialSections, store.answers) + (store.evidence.length ? 1 : 0);
   const essentialTotal = essentialSections.length + 1;
-  const furtherCompleted = furtherProgress.filter((item) => item.status === "Completed").length;
-
-  const currentMatch = path.match(/^\/section\/(\d+)\/question\/(\d+)/);
-  const currentSection = currentMatch ? sections.find((section) => section.number === Number(currentMatch[1])) : undefined;
-  const currentQuestionNumber = currentMatch ? Number(currentMatch[2]) : 1;
-  const currentQuestion = currentSection?.questions[currentQuestionNumber - 1];
-  const onQuestionPage = Boolean(currentSection && currentQuestion);
-
-  if (!ready) return <><DcrsHeader /><main className="dcrs-width-container dcrs-main"><p className="govuk-body">Loading your report…</p></main><DcrsFooter /></>;
-
-  const pageTitle = path === "/essential-information" ? "Essential information"
-    : path === "/further-information" ? "Further information"
-    : path === "/supporting-evidence" ? "Supporting evidence"
-    : path === "/essential-information-submitted" ? "Essential information submitted"
-    : path === "/submitted-information" ? "Submitted information"
-    : onQuestionPage ? currentSection!.title : "Your reports";
-
-  const handleSubmitQuestion = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const nextQuestion = currentSection!.questions.findIndex((question) => question.id === currentQuestion!.id) + 2;
-    if (nextQuestion <= currentSection!.questions.length) window.location.href = sectionPath(currentSection!, nextQuestion);
-    else window.location.href = currentSection!.submission === "essential" ? "/essential-information" : "/further-information";
-  };
-
-  const handleEssentialSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (essentialCompleted < essentialTotal) return;
-    const submissionId = `DCRS-${new Date().getFullYear()}-${String(Date.now()).slice(-6)}`;
-    persist({ ...store, submittedId: submissionId });
-    window.location.href = "/essential-information-submitted";
-  };
-
-  const resetAll = () => {
-    persist(emptyState);
-    setNotice("All saved answers and supporting evidence have been cleared.");
-  };
-
-  return <>
-    <DcrsHeader />
-    <main className="dcrs-width-container dcrs-main">
-      <span className="govuk-caption-xl">Director Conduct Reporting Service</span>
-      <h1 className="govuk-heading-xl">{pageTitle}</h1>
-      {notice && <div className="govuk-notification-banner govuk-notification-banner--success" role="status"><div className="govuk-notification-banner__content"><p className="govuk-notification-banner__heading">{notice}</p></div></div>}
-      {path === "/" && <>
-        <p className="dcrs-case-meta govuk-body">Example report · Northstar Interiors Ltd · Company number: 15384921</p>
-        <div className="dcrs-stage-grid">
-          <section className={`dcrs-stage-card ${store.submittedId ? "dcrs-stage-card--submitted" : ""}`} aria-labelledby="essential-title">
-            <div className="dcrs-stage-card__heading"><h2 className="govuk-heading-m" id="essential-title">Essential information</h2><Tag colour={store.submittedId ? "green" : essentialCompleted === essentialTotal ? "green" : "blue"}>{store.submittedId ? "Submitted" : essentialCompleted === essentialTotal ? "Ready to submit" : "In progress"}</Tag></div>
-            {store.submittedId ? <><p className="govuk-body"><strong>Essential information has been submitted for initial assessment.</strong></p><p className="govuk-body">You do not need to complete it again unless you need to make a change.</p><a className="govuk-button govuk-button--secondary" href="/submitted-information">View submitted information</a><p className="govuk-body"><a className="govuk-link" href="/essential-information">Edit essential information</a></p></>
-              : <><p className="govuk-body">Provide the information needed for the initial assessment.</p><Progress title="Essential information" completed={essentialCompleted} total={essentialTotal} /><ul className="govuk-list dcrs-stage-list">{essentialSections.map((section) => <StageListItem key={section.number} section={section} answers={store.answers} />)}<li><a className="govuk-link" href="/supporting-evidence">Supporting evidence</a><span className="dcrs-stage-list__status">{store.evidence.length ? "Completed" : "Not started"}</span></li></ul><a className="govuk-button govuk-!-margin-top-4" href="/essential-information">Continue essential information</a></>}
-          </section>
-          <section className={`dcrs-stage-card ${store.furtherActive ? "" : "dcrs-stage-card--locked"}`} aria-labelledby="further-title">
-            <div className="dcrs-stage-card__heading"><h2 className="govuk-heading-m" id="further-title">Further information</h2><Tag colour={store.furtherActive ? "blue" : "grey"}>{store.furtherActive ? "Available" : "Not available yet"}</Tag></div>
-            {store.furtherActive ? <><p className="govuk-body">Provide additional information requested after the initial assessment.</p><Progress title="Further information" completed={furtherCompleted} total={furtherSections.length} /><ul className="govuk-list dcrs-stage-list">{furtherSections.map((section) => <StageListItem key={section.number} section={section} answers={store.answers} />)}<li><a className="govuk-link" href="/supporting-evidence">Supporting evidence</a><span className="dcrs-stage-list__status">{store.evidence.length ? "Completed" : "Not started"}</span></li></ul><a className="govuk-button govuk-!-margin-top-4" href="/further-information">Continue further information</a></>
-              : <><p className="govuk-body">This section becomes available after the initial assessment.</p><div className="govuk-inset-text">Further information is not currently required for this prototype report.</div></>}
-          </section>
-        </div>
-        <div className="dcrs-testing"><details><summary className="govuk-details__summary"><span className="govuk-details__summary-text">Prototype testing tools</span></summary><div className="govuk-details__text"><p className="govuk-body">These controls are for testing the prototype. A live service would receive the assessment outcome from its case management system.</p><button type="button" className="govuk-button govuk-button--secondary" onClick={() => { persist({ ...store, furtherActive: true }); setNotice("Further information is now available for testing."); }}>Activate Further information</button><button type="button" className="govuk-button govuk-button--warning" onClick={resetAll}>Clear all answers and evidence</button><button type="button" className="govuk-button govuk-button--secondary" onClick={() => { persist({ ...store, submittedId: null }); setNotice("Test submission status reset."); }}>Reset test submission</button></div></details></div>
-      </>}
-
-      {path === "/further-information" && !store.furtherActive && <div className="govuk-inset-text">Further information is not available yet. Return to <a className="govuk-link" href="/">your reports</a> for the latest status.</div>}
-      {(path === "/essential-information" || (path === "/further-information" && store.furtherActive)) && <StagePage
-        sections={path === "/essential-information" ? essentialSections : furtherSections}
-        answers={store.answers}
-        evidenceCount={store.evidence.length}
-        completed={path === "/essential-information" ? essentialCompleted : furtherCompleted}
-        total={path === "/essential-information" ? essentialTotal : furtherSections.length}
-        onSubmit={handleEssentialSubmit}
-        submittedId={path === "/essential-information" ? store.submittedId : null}
-      />}
-
-      {onQuestionPage && currentSection?.submission === "further" && !store.furtherActive && <div className="govuk-inset-text">This section is not available yet. Return to <a className="govuk-link" href="/">your reports</a> for the latest status.</div>}
-      {onQuestionPage && currentQuestion && currentSection && (currentSection.submission === "essential" || store.furtherActive) && <>
-        <nav className="govuk-breadcrumbs" aria-label="Breadcrumb"><ol className="govuk-breadcrumbs__list"><li className="govuk-breadcrumbs__list-item"><a className="govuk-breadcrumbs__link" href="/">Your reports</a></li><li className="govuk-breadcrumbs__list-item"><a className="govuk-breadcrumbs__link" href={currentSection.submission === "essential" ? "/essential-information" : "/further-information"}>{currentSection.submission === "essential" ? "Essential information" : "Further information"}</a></li><li className="govuk-breadcrumbs__list-item" aria-current="page">Question {currentQuestionNumber}</li></ol></nav>
-        <div className="dcrs-question-layout">
-          <aside className="dcrs-question-nav" aria-labelledby="question-nav-heading"><h2 className="govuk-heading-s" id="question-nav-heading">{currentSection.submission === "essential" ? "Essential information" : "Further information"}</h2><ul className="dcrs-question-nav__list">{(currentSection.submission === "essential" ? essentialSections : furtherSections).map((section) => <li key={section.number} className={`dcrs-question-nav__item ${section.number === currentSection.number ? "dcrs-question-nav__item--current" : ""}`}><a className="dcrs-question-nav__link" href={sectionPath(section)}>{displayNumber(section)}. {section.title}</a><span className="dcrs-question-nav__status">{getProgress(section, store.answers).status}</span>{section.number === currentSection.number && <ul className="dcrs-question-nav__children">{section.questions.map((question, index) => <li key={question.id} className={`dcrs-question-nav__item ${index + 1 === currentQuestionNumber ? "dcrs-question-nav__item--current" : ""}`}><a className="dcrs-question-nav__link" href={sectionPath(section, index + 1)} aria-current={index + 1 === currentQuestionNumber ? "page" : undefined}>{displayNumber(section)}.{index + 1} {question.text}</a></li>)}</ul>}</li>)}</ul></aside>
-          <section className="dcrs-question-content"><a className="govuk-back-link" href={currentSection.submission === "essential" ? "/essential-information" : "/further-information"}>Back to sections</a><span className="govuk-caption-xl">Section {displayNumber(currentSection)}</span><h2 className="govuk-heading-xl">{currentSection.title}</h2><p className="govuk-body-l">Question {currentQuestionNumber} of {currentSection.questions.length}</p>
-            <form onSubmit={handleSubmitQuestion}><QuestionControl question={currentQuestion} value={store.answers[currentQuestion.id]} onChange={(value) => updateAnswer(currentQuestion.id, value)} />
-              <div className="govuk-button-group"><button className="govuk-button" type="submit">Save and continue</button>{currentQuestionNumber > 1 && <a className="govuk-link" href={sectionPath(currentSection, currentQuestionNumber - 1)}>Previous question</a>}</div>
-            </form>
-          </section>
-        </div>
-      </>}
-
-      {path === "/supporting-evidence" && <section aria-labelledby="evidence-heading"><p className="govuk-body">Upload documents that support this report. This prototype stores file names in this browser only.</p><h2 className="govuk-heading-m" id="evidence-heading">Supporting evidence</h2><label className="govuk-label" htmlFor="evidence-files">Choose files</label><div className="govuk-hint" id="evidence-hint">PDF, DOCX, XLSX or CSV files, up to 10MB each.</div><input className="govuk-file-upload" id="evidence-files" type="file" multiple accept=".pdf,.docx,.xlsx,.csv" aria-describedby="evidence-hint" onChange={(event) => { const names = Array.from(event.target.files ?? []).map((file) => file.name); if (names.length) persist({ ...store, evidence: [...store.evidence, ...names] }); event.currentTarget.value = ""; }} />{store.evidence.length > 0 && <><h3 className="govuk-heading-s govuk-!-margin-top-6">Uploaded evidence</h3><ul className="govuk-list dcrs-evidence-list">{store.evidence.map((name, index) => <li key={`${name}-${index}`}>{name} <button type="button" className="govuk-link" onClick={() => persist({ ...store, evidence: store.evidence.filter((_, fileIndex) => fileIndex !== index) })} aria-label={`Remove ${name}`}>Remove</button></li>)}</ul></>}<p className="govuk-body govuk-!-margin-top-6"><a className="govuk-button" href="/">Return to your reports</a></p></section>}
-
-      {path === "/essential-information-submitted" && <SubmittedPage submissionId={store.submittedId} />}
-      {path === "/submitted-information" && <SubmittedAnswers answers={store.answers} />}
-    </main>
-    <DcrsFooter />
-  </>;
+  const furtherCompleted = allProgress(availableFurther, store.answers) + (store.evidence.length ? 1 : 0);
+  const current = path.match(/^\/section\/(\d+)\/question\/(\d+)$/);
+  const currentSection = current ? sections.find((s) => s.number === Number(current[1])) : undefined;
+  const currentNumber = current ? Number(current[2]) : 0;
+  const currentQuestion = currentSection?.questions[currentNumber - 1];
+  const reset = () => save({ ...emptyStore, evidence: store.evidence });
+  const resetSubmission = () => save({ ...store, essentialSubmissionId: null, furtherSubmissionId: null, initialAssessmentPassed: false, furtherInformationStarted: false });
+  if (!ready) return <><Header unread={unread} /><main className="govuk-main-wrapper dcr"><div className="govuk-width-container dcr-site-width-container"><p className="govuk-body">Loading your report…</p></div></main><Footer /></>;
+  const submitEssential = (event: FormEvent) => { event.preventDefault(); if (essentialCompleted < essentialTotal) return; save({ ...store, essentialSubmissionId: store.essentialSubmissionId ?? idFor("DCRS"), initialAssessmentPassed: false }); window.location.href = "/essential-information-submitted"; };
+  const submitFurther = (event: FormEvent) => { event.preventDefault(); if (furtherCompleted < availableFurther.length) return; save({ ...store, furtherSubmissionId: store.furtherSubmissionId ?? idFor("DCRS") }); window.location.href = "/summary"; };
+  const markFurtherStarted = () => { save({ ...store, initialAssessmentPassed: true, furtherInformationStarted: true }); window.location.href = "/further-information"; };
+  let content: ReactNode;
+  if (path === "/") content = <Overview store={store} availableFurther={availableFurther} essentialCompleted={essentialCompleted} essentialTotal={essentialTotal} furtherCompleted={furtherCompleted} onStartFurther={markFurtherStarted} onReset={resetSubmission} onAssessment={() => save({ ...store, initialAssessmentPassed: true })} />;
+  else if (path === "/essential-information") content = <StagePage title="Essential information" sections={essentialSections} answers={store.answers} evidence={store.evidence.length} completed={essentialCompleted} total={essentialTotal} submitted={store.essentialSubmissionId} onSubmit={submitEssential} />;
+  else if (path === "/further-information") content = <StagePage title="Further information" sections={availableFurther} answers={store.answers} evidence={store.evidence.length} completed={furtherCompleted} total={availableFurther.length + 1} submitted={store.furtherSubmissionId} onSubmit={submitFurther} further />;
+  else if (path === "/supporting-evidence") content = <EvidencePage store={store} save={save} />;
+  else if (path === "/essential-information-submitted") content = <SubmittedPage id={store.essentialSubmissionId} further={false} />;
+  else if (path === "/summary") content = <SubmittedPage id={store.furtherSubmissionId} further />;
+  else if (path === "/submitted-information") content = <SubmittedAnswers store={store} />;
+  else if (path === "/submitted-further-information") content = <SubmittedAnswers store={store} further />;
+  else if (path === "/clear-answers") content = <ClearAnswers onClear={() => { reset(); window.location.href = "/?answers-cleared=true"; }} />;
+  else if (path === "/notifications") content = <Notifications />;
+  else if (currentSection && currentQuestion) content = <QuestionPage section={currentSection} question={currentQuestion} questionNumber={currentNumber} answers={store.answers} availableFurther={availableFurther} update={update} />;
+  else content = <Unavailable />;
+  return <><Header unread={unread} /><main className="govuk-main-wrapper dcr"><div className="govuk-width-container dcr-site-width-container">{content}</div></main><Footer /></>;
 }
 
-function StageListItem({ section, answers }: { section: Section; answers: Answers }) {
-  const progress = getProgress(section, answers);
-  return <li><a className="govuk-link" href={sectionPath(section)}>{displayNumber(section)}. {section.title}</a><span className="dcrs-stage-list__status">{progress.status}</span></li>;
+function Overview({ store, availableFurther, essentialCompleted, essentialTotal, furtherCompleted, onStartFurther, onReset, onAssessment }: { store: Store; availableFurther: Section[]; essentialCompleted: number; essentialTotal: number; furtherCompleted: number; onStartFurther: () => void; onReset: () => void; onAssessment: () => void }) {
+  const essentialSubmitted = Boolean(store.essentialSubmissionId);
+  if (essentialSubmitted && !store.furtherInformationStarted) return <><span className="govuk-caption-xl">Director Conduct Reporting Service</span><h1 className="govuk-heading-xl">Your reports</h1><p className="govuk-body-l">ABC Limited<span className="govuk-hint">Company number: 12345678</span></p><div className="dcrs-submitted-overview"><div className="dcrs-submitted-overview__header"><span className="dcrs-status-icon" aria-hidden="true">✓</span><div><h2 className="govuk-heading-m">Essential information submitted</h2><p className="govuk-body-s">Submission ID: {store.essentialSubmissionId}</p></div></div><p className="govuk-body">Thank you. We have received the essential information for this report.</p><p className="govuk-body">We will now assess the information you have provided. You do not need to do anything at the moment.</p><h2 className="govuk-heading-m">What happens next?</h2><ol className="dcrs-submission-steps"><li><strong>Essential information submitted</strong><span>We have received your information.</span></li><li><strong>Initial assessment</strong><span>{store.initialAssessmentPassed ? "Complete" : "In progress"}</span></li><li><strong>Further information</strong><span>{store.initialAssessmentPassed ? "You can now provide further information if requested." : "We will invite you to complete the next stage if needed."}</span></li></ol><div className="dcrs-overview-actions"><a className="govuk-link" href="/submitted-information">View submitted information <span aria-hidden="true">›</span></a><a className="govuk-button" href="/">Return to your reports</a></div></div><div className="dcrs-testing"><details className="govuk-details"><summary className="govuk-details__summary"><span className="govuk-details__summary-text">Prototype testing tools</span></summary><div className="govuk-details__text"><button className="govuk-button govuk-button--secondary" type="button" onClick={onAssessment}>Mark initial assessment as passed</button>{store.initialAssessmentPassed && <button className="govuk-button govuk-button--secondary" type="button" onClick={onStartFurther}>Start further information</button>}<p><a className="govuk-link" href="/clear-answers">Clear all answers</a></p></div></details></div></>;
+  return <><span className="govuk-caption-xl">Director Conduct Reporting Service</span><h1 className="govuk-heading-xl">Your reports</h1><p className="govuk-body-l dcrs-case-heading"><strong>ABC Limited</strong><span>Company number: 12345678</span></p><div className="dcrs-stage-grid"><StageCard title="Essential information" submitted={essentialSubmitted} locked={false} status={essentialSubmitted ? "Submitted" : essentialCompleted === essentialTotal ? "Ready to submit" : "In progress"}>{essentialSubmitted ? <><p className="govuk-body"><strong>Essential information has been submitted.</strong></p><p className="govuk-body">You can view the submitted information while this report is assessed.</p><a className="govuk-link" href="/submitted-information">View submitted information</a></> : <><p className="govuk-body">Complete the information needed for the initial assessment.</p><Progress title="Essential information" completed={essentialCompleted} total={essentialTotal} /><ul className="govuk-list dcrs-stage-list">{essentialSections.map((s) => <StageItem key={s.number} section={s} answers={store.answers} />)}<EvidenceItem count={store.evidence.length} /></ul><a className="govuk-button" href="/essential-information">{essentialCompleted === essentialTotal ? "Review and submit" : "Continue essential information"}</a></>}</StageCard><StageCard title="Further information" submitted={Boolean(store.furtherSubmissionId)} locked={!store.furtherInformationStarted}><p className="govuk-body">Provide any additional information requested after the initial assessment.</p>{store.furtherInformationStarted ? <><Progress title="Further information" completed={furtherCompleted} total={availableFurther.length + 1} /><ul className="govuk-list dcrs-stage-list">{availableFurther.map((s) => <StageItem key={s.number} section={s} answers={store.answers} />)}<EvidenceItem count={store.evidence.length} /></ul><a className="govuk-button" href="/further-information">Continue further information</a></> : <div className="govuk-inset-text">Further information will become available after the initial assessment.</div>}</StageCard></div><div className="dcrs-overview-actions"><a className="govuk-link" href="/supporting-evidence">Download questions report</a></div><div className="dcrs-testing"><details className="govuk-details"><summary className="govuk-details__summary"><span className="govuk-details__summary-text">Prototype testing tools</span></summary><div className="govuk-details__text"><p className="govuk-body-s">These controls simulate service actions for testing.</p>{essentialSubmitted && <p><a className="govuk-link" href="/essential-information">Edit essential information</a></p>}<button className="govuk-button govuk-button--secondary" type="button" onClick={onAssessment}>Replicate initial assessment passed</button><button className="govuk-button govuk-button--warning" type="button" onClick={onReset}>Reset submission status</button><p><a className="govuk-link" href="/clear-answers">Clear all answers</a></p></div></details></div></>;
 }
+function StageCard({ title, submitted, locked, status, children }: { title: string; submitted: boolean; locked: boolean; status?: string; children: ReactNode }) { return <section className={`dcrs-stage-card ${submitted ? "dcrs-stage-card--submitted" : ""} ${locked ? "dcrs-stage-card--locked" : ""}`}><div className="dcrs-stage-card__header"><div><span className="dcrs-stage-card__number" aria-hidden="true">{title.startsWith("Essential") ? "1" : "2"}</span><h2 className="govuk-heading-m">{title}</h2></div>{status && <Tag colour={submitted ? "green" : locked ? "grey" : "blue"}>{status}</Tag>}</div>{children}</section>; }
+function StagePage({ title, sections: items, answers, evidence, completed, total, submitted, onSubmit, further = false }: { title: string; sections: Section[]; answers: Answers; evidence: number; completed: number; total: number; submitted: string | null; onSubmit: (event: FormEvent) => void; further?: boolean }) { return <><Breadcrumbs items={[{ label: "Your reports", href: "/" }, { label: title }]} /><a className="govuk-back-link" href="/">Back to your reports</a><h1 className="govuk-heading-xl">{title}</h1>{further && <div className="govuk-inset-text"><strong>Before you submit</strong><ul className="govuk-list govuk-list--bullet"><li>Copy of the Report to Creditors (Estimated Financial Position) or the Administrators Proposals</li><li>Copies of any accounts in your possession in the Supporting evidence section</li></ul></div>}<Progress title={title} completed={completed} total={total} /><ul className="govuk-list dcrs-essential-list">{items.map((s) => <StageItem key={s.number} section={s} answers={answers} />)}<EvidenceItem count={evidence} /></ul>{submitted ? <div className="govuk-inset-text">This information has been submitted. <a className="govuk-link" href={further ? "/summary" : "/essential-information-submitted"}>View confirmation</a>.</div> : <form onSubmit={onSubmit}><button className="govuk-button" type="submit" disabled={completed < total}>{further ? "Submit further information" : "Submit essential information"}</button>{completed < total && <p className="govuk-hint">Complete all required sections before submitting.</p>}</form>}</>; }
 
-function StagePage({ sections: stageSections, answers, evidenceCount, completed, total, onSubmit, submittedId }: {
-  sections: Section[]; answers: Answers; evidenceCount: number; completed: number; total: number;
-  onSubmit: (event: FormEvent<HTMLFormElement>) => void; submittedId: string | null;
-}) {
-  const isFurther = stageSections[0]?.submission === "further";
-  return <>
-    <a className="govuk-back-link" href="/">Back to your reports</a>
-    <p className="govuk-body-l">{isFurther ? "Complete the sections requested after the initial assessment." : "Complete all sections before submitting for initial assessment."}</p>
-    <Progress title={isFurther ? "Further information" : "Essential information"} completed={completed} total={total} />
-    <ul className="govuk-list dcrs-stage-list">{stageSections.map((section) => <StageListItem key={section.number} section={section} answers={answers} />)}{!isFurther && <li><a className="govuk-link" href="/supporting-evidence">Supporting evidence</a><span className="dcrs-stage-list__status">{evidenceCount ? "Completed" : "Not started"}</span></li>}{isFurther && <li><a className="govuk-link" href="/supporting-evidence">Supporting evidence</a><span className="dcrs-stage-list__status">{evidenceCount ? "Completed" : "Not started"}</span></li>}</ul>
-    {!isFurther && (submittedId ? <div className="govuk-inset-text">Essential information has been submitted. <a className="govuk-link" href="/essential-information-submitted">View confirmation</a>.</div> : <form onSubmit={onSubmit} className="govuk-!-margin-top-6"><button className="govuk-button" type="submit" disabled={completed < total}>Submit essential information</button>{completed < total && <p className="govuk-hint">Complete all required answers and upload supporting evidence before submitting.</p>}</form>)}
-  </>;
-}
+function QuestionPage({ section, question, questionNumber, answers, availableFurther, update }: { section: Section; question: Question; questionNumber: number; answers: Answers; availableFurther: Section[]; update: (id: string, value: Answer) => void }) { const list = section.submission === "essential" ? essentialSections : availableFurther; const back = section.submission === "essential" ? "/essential-information" : "/further-information"; const save = (event: FormEvent) => { event.preventDefault(); const next = questionNumber + 1; window.location.href = next <= section.questions.length ? sectionPath(section, next) : back; }; return <><Breadcrumbs items={[{ label: "Your reports", href: "/" }, { label: section.submission === "essential" ? "Essential information" : "Further information", href: back }, { label: section.title }]} /><div className="dcrs-question-layout"><aside className="x-govuk-sub-navigation dcrs-question-navigation" aria-label="Section navigation"><h2 className="govuk-heading-s">{section.submission === "essential" ? "Essential information" : "Further information"}</h2><ul className="x-govuk-sub-navigation__section">{list.map((item) => <li className={`x-govuk-sub-navigation__section-item ${item.number === section.number ? "dcrs-question-navigation__section--current" : ""}`} key={item.number}><a href={sectionPath(item)} aria-current={item.number === section.number ? "page" : undefined}>{item.submission === "essential" ? `${item.number}. ` : ""}{item.title}</a>{item.number === section.number && <ul className="dcrs-question-navigation__questions">{item.questions.map((q, i) => <li key={q.id}><a href={sectionPath(item, i + 1)} aria-current={i + 1 === questionNumber ? "page" : undefined}>Question {i + 1}</a></li>)}</ul>}</li>)}</ul></aside><section className="dcrs-question-content"><a className="govuk-back-link" href={back}>Back to {section.submission === "essential" ? "sections" : "further information"}</a><span className="govuk-caption-xl">{section.submission === "essential" ? `Section ${section.number} of ${essentialSections.length}` : "Further information"}</span><h1 className="govuk-heading-xl">{section.title}</h1><p className="govuk-body-l">Question {questionNumber} of {section.questions.length}</p><form onSubmit={save}><QuestionControl question={question} value={answers[question.id]} onChange={(v) => update(question.id, v)} /><div className="govuk-button-group"><button className="govuk-button" type="submit">Save and continue</button><a className="govuk-link" href={back}>Save and return to section overview</a></div></form></section></div></>; }
 
-function QuestionControl({ question, value, onChange }: { question: Question; value: string | string[] | undefined; onChange: (value: string | string[]) => void }) {
-  const id = question.id;
-  const options = question.options ?? [];
-  const valueString = Array.isArray(value) ? "" : value ?? "";
-  const set = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => onChange(event.currentTarget.value);
-  if (question.type === "action") return <div className="govuk-inset-text"><p className="govuk-body">{question.text}</p>{question.hint && <p className="govuk-body">{question.hint}</p>}</div>;
-  const descriptions = [question.required ? `${id}-required` : null, question.hint || question.validation ? `${id}-hint` : null].filter(Boolean).join(" ") || undefined;
-  return <div className="govuk-form-group"><fieldset className="govuk-fieldset" aria-describedby={descriptions}><legend className="govuk-fieldset__legend govuk-fieldset__legend--m"><h2 className="govuk-fieldset__heading">{question.text}</h2></legend>{question.required && <p className="govuk-hint" id={`${id}-required`}>Required</p>}{(question.hint || question.validation) && <div className="govuk-hint" id={`${id}-hint`}>{question.hint || question.validation}</div>}
-    {question.type === "radio" ? <div className="govuk-radios">{options.map((option, index) => <div className="govuk-radios__item" key={option}><input className="govuk-radios__input" id={`${id}-${index}`} name={id} type="radio" required={question.required} value={option} checked={valueString === option} onChange={(event) => onChange(event.currentTarget.value)} /><label className="govuk-label govuk-radios__label" htmlFor={`${id}-${index}`}>{option}</label></div>)}</div>
-      : question.type === "checkboxes" ? <div className="govuk-checkboxes">{options.map((option, index) => { const values = Array.isArray(value) ? value : []; return <div className="govuk-checkboxes__item" key={option}><input className="govuk-checkboxes__input" id={`${id}-${index}`} name={id} type="checkbox" required={question.required && index === 0} value={option} checked={values.includes(option)} onChange={(event) => onChange(event.currentTarget.checked ? [...values, option] : values.filter((item) => item !== option))} /><label className="govuk-label govuk-checkboxes__label" htmlFor={`${id}-${index}`}>{option}</label></div>; })}</div>
-      : question.type === "date" ? <div className="govuk-date-input"><div className="govuk-date-input__item"><label className="govuk-label govuk-date-input__label" htmlFor={id}>Date</label><input className="govuk-input govuk-date-input__input govuk-input--width-10" id={id} name={id} type="text" inputMode="numeric" required={question.required} placeholder="dd/mm/yyyy" value={valueString} onChange={set} /></div></div>
-      : question.type === "text" && (id.includes("company-information") || question.text.toLowerCase().includes("name") || question.text.toLowerCase().includes("number")) ? <input className="govuk-input govuk-!-width-two-thirds" id={id} name={id} type="text" required={question.required} value={valueString} onChange={set} />
-      : question.type === "text" ? <textarea className="govuk-textarea" id={id} name={id} rows={6} required={question.required} value={valueString} onChange={set} />
-      : <input className="govuk-input govuk-!-width-two-thirds" id={id} name={id} type={question.type === "url" ? "url" : "text"} required={question.required} value={valueString} onChange={set} />}
-  </fieldset></div>;
-}
+const yesNoIds = new Set(["essential-company-information-5", "essential-insolvency-information-5", "section-18-1", "section-19-4", "section-19-5", "section-19-9", "section-21-6", "section-23-3", "section-23-4", "section-23-6", "section-23-8", "section-24-6", "section-24-10", "section-24-13", "section-24-14", "section-24-15", "section-25-9", "section-26-2", "section-26-4", "section-20-2", "section-20-4", "section-20-5", "section-20-6", "section-20-7", "section-20-10", "section-20-14", "section-20-15"]);
+function QuestionControl({ question, value, onChange }: { question: Question; value: Answer | undefined; onChange: (value: Answer) => void }) { const id = question.id; const options = yesNoIds.has(id) ? ["Yes", "No"] : question.options ?? []; const stringValue = answerText(value); if (question.type === "action") return <div className="govuk-inset-text">{question.text}</div>; const hintId = `${id}-hint`; const multiline = question.type === "text" && (id.includes("section-20-11") || id.includes("section-20-16") || id.includes("section-21-4") || id.includes("section-21-5") || id.includes("section-22-8") || id.includes("section-25-5") || id.includes("section-28-4")); return <div className="govuk-form-group"><fieldset className="govuk-fieldset" aria-describedby={question.hint || question.validation ? hintId : undefined}><legend className="govuk-fieldset__legend govuk-fieldset__legend--m"><h2 className="govuk-fieldset__heading">{question.text}</h2></legend>{question.required && <p className="govuk-hint">Required</p>}{(question.hint || question.validation) && <div className="govuk-hint" id={hintId}>{question.hint || question.validation}</div>}{id === "essential-company-information-1" && <div className="govuk-inset-text"><h3 className="govuk-heading-s">Look up Companies House data</h3><p className="govuk-body-s">Enter the company number to retrieve company information.</p><button type="button" className="govuk-button govuk-button--secondary" onClick={() => onChange(stringValue || "12345678")}>Retrieve company data</button></div>}{(question.type === "radio" || options.length > 0) ? <div className="govuk-radios">{options.map((option, i) => <div className="govuk-radios__item" key={option}><input className="govuk-radios__input" id={`${id}-${i}`} name={id} type="radio" required={question.required} value={option} checked={stringValue === option} onChange={(e) => onChange(e.currentTarget.value)} /><label className="govuk-label govuk-radios__label" htmlFor={`${id}-${i}`}>{option}</label></div>)}</div> : question.type === "checkboxes" ? <div className="govuk-checkboxes">{options.map((option, i) => { const values = Array.isArray(value) ? value : []; return <div className="govuk-checkboxes__item" key={option}><input className="govuk-checkboxes__input" id={`${id}-${i}`} type="checkbox" checked={values.includes(option)} onChange={(e) => onChange(e.currentTarget.checked ? [...values, option] : values.filter((v) => v !== option))} /><label className="govuk-label govuk-checkboxes__label" htmlFor={`${id}-${i}`}>{option}</label></div>; })}</div> : question.type === "date" ? <input className="govuk-input govuk-input--width-10" id={id} type="text" placeholder="dd/mm/yyyy" required={question.required} value={stringValue} onChange={(e) => onChange(e.currentTarget.value)} /> : multiline ? <textarea className="govuk-textarea" id={id} rows={6} required={question.required} value={stringValue} onChange={(e) => onChange(e.currentTarget.value)} /> : <input className="govuk-input govuk-!-width-two-thirds" id={id} type={question.type === "url" ? "url" : "text"} required={question.required} value={stringValue} onChange={(e) => onChange(e.currentTarget.value)} />}</fieldset></div>; }
 
-function SubmittedPage({ submissionId }: { submissionId: string | null }) {
-  if (!submissionId) return <div className="govuk-inset-text">No test submission is available. <a className="govuk-link" href="/essential-information">Return to Essential information</a>.</div>;
-  return <>
-    <div className="govuk-notification-banner govuk-notification-banner--success dcrs-submission-banner" role="status" aria-labelledby="submission-title"><div className="govuk-notification-banner__header"><h2 className="govuk-notification-banner__title" id="submission-title">Essential information submitted</h2></div><div className="govuk-notification-banner__content"><p className="govuk-notification-banner__heading">Submission ID: {submissionId}</p></div></div>
-    <p className="govuk-body">Thank you. We have received the essential information for this report. We will now assess the information you have provided. You do not need to do anything at the moment.</p>
-    <h2 className="govuk-heading-m">What happens next?</h2>
-    <ol className="dcrs-timeline"><li><span className="dcrs-timeline__number" aria-hidden="true">1</span><div><strong>Initial assessment</strong><p className="govuk-body">We will assess the information you submitted.</p></div></li><li><span className="dcrs-timeline__number" aria-hidden="true">2</span><div><strong>We will let you know the outcome.</strong></div></li><li><span className="dcrs-timeline__number" aria-hidden="true">3</span><div><strong>If further information is required, we will invite you to complete the next stage.</strong></div></li></ol>
-    <div className="dcrs-actions"><a className="govuk-link" href="/submitted-information">View submitted information</a><br /><a className="govuk-button" href="/">Return to your reports</a></div>
-  </>;
-}
+function EvidencePage({ store, save }: { store: Store; save: (next: Store) => void }) { return <><Breadcrumbs items={[{ label: "Your reports", href: "/" }, { label: "Supporting evidence" }]} /><a className="govuk-back-link" href="/">Back to your reports</a><span className="govuk-caption-xl">Director Conduct Reporting Service</span><h1 className="govuk-heading-xl">Supporting evidence</h1><p className="govuk-body-l">Upload documents that support your report.</p><div className="govuk-form-group"><label className="govuk-label" htmlFor="evidence-files">Choose files</label><div className="govuk-hint" id="evidence-hint">PDF, DOCX, XLSX or CSV files, up to 10MB each.</div><input className="govuk-file-upload" id="evidence-files" type="file" multiple accept=".pdf,.docx,.xlsx,.csv" aria-describedby="evidence-hint" onChange={(e) => { const files = Array.from(e.currentTarget.files ?? []); if (files.length) save({ ...store, evidence: [...store.evidence, ...files.map((f) => ({ name: f.name, size: f.size, date: new Date().toLocaleDateString("en-GB") }))] }); e.currentTarget.value = ""; }} /></div>{store.evidence.length > 0 && <><h2 className="govuk-heading-m">Uploaded evidence</h2><ul className="govuk-list dcrs-uploaded-evidence-list">{store.evidence.map((file, i) => <li key={`${file.name}-${i}`}><span><strong>{file.name}</strong><small>{Math.max(1, Math.round(file.size / 1024))} KB · {file.date}</small></span><button type="button" className="govuk-link" onClick={() => save({ ...store, evidence: store.evidence.filter((_, n) => n !== i) })}>Remove</button></li>)}</ul></>}<div className="govuk-button-group"><a className="govuk-button" href="/">Save and continue</a></div></>; }
+function SubmittedPage({ id, further }: { id: string | null; further: boolean }) { if (!id) return <div className="govuk-inset-text">No submission is available. <a className="govuk-link" href="/">Return to your reports</a>.</div>; return <><div className="govuk-notification-banner govuk-notification-banner--success dcrs-submission-banner" role="status"><div className="govuk-notification-banner__header"><h2 className="govuk-notification-banner__title">{further ? "Further information submitted" : "Essential information submitted"}</h2></div><div className="govuk-notification-banner__content"><p className="govuk-notification-banner__heading">Submission ID: {id}</p></div></div><p className="govuk-body">Thank you. We have received the {further ? "further" : "essential"} information for this report.</p><h2 className="govuk-heading-m">What happens next?</h2><ol className="dcrs-submission-steps"><li><strong>Review</strong><span>We will review the information you submitted.</span></li><li><strong>Assessment</strong><span>We will let you know the outcome.</span></li></ol><div className="dcrs-overview-actions"><a className="govuk-link" href={further ? "/submitted-further-information" : "/submitted-information"}>View submitted information <span aria-hidden="true">›</span></a><a className="govuk-button" href="/">Return to your reports</a></div></>; }
+function SubmittedAnswers({ store, further = false }: { store: Store; further?: boolean }) { const items = sections.filter((s) => (further ? s.submission === "further" : s.submission === "essential")).flatMap((s) => s.questions.filter((q) => hasAnswer(store.answers[q.id])).map((q) => ({ section: s.title, question: q.text, answer: answerText(store.answers[q.id]) }))); return <><a className="govuk-back-link" href="/">Back to your reports</a><h1 className="govuk-heading-xl">{further ? "Submitted further information" : "Submitted information"}</h1>{items.length ? <dl className="govuk-summary-list">{items.map((item) => <div className="govuk-summary-list__row" key={`${item.section}-${item.question}`}><dt className="govuk-summary-list__key">{item.question}<span className="govuk-hint">{item.section}</span></dt><dd className="govuk-summary-list__value">{item.answer}</dd></div>)}</dl> : <p className="govuk-body">No answers have been saved.</p>}</>; }
+function ClearAnswers({ onClear }: { onClear: () => void }) { return <><a className="govuk-back-link" href="/">Back to your reports</a><h1 className="govuk-heading-xl">Clear all answers?</h1><p className="govuk-body">This will remove all saved answers from this prototype report. Uploaded supporting evidence will remain.</p><button className="govuk-button govuk-button--warning" type="button" onClick={onClear}>Clear all answers</button><p><a className="govuk-link" href="/">Cancel</a></p></>; }
+function Notifications() { return <><a className="govuk-back-link" href="/">Back to your reports</a><h1 className="govuk-heading-xl">Notifications</h1><div className="dcrs-notification-list"><article className="dcrs-notification"><div><strong className="govuk-tag govuk-tag--blue">Unread</strong><h2 className="govuk-heading-m">Further information may be needed</h2><p className="govuk-body">We may ask you to provide further information about this report.</p><a className="govuk-link" href="/further-information">View further information</a></div></article><article className="dcrs-notification"><div><strong className="govuk-tag govuk-tag--blue">Unread</strong><h2 className="govuk-heading-m">Check your responses before submitting</h2><p className="govuk-body">Make sure your answers are accurate and complete.</p></div></article><article className="dcrs-notification"><div><strong className="govuk-tag govuk-tag--grey">Read</strong><h2 className="govuk-heading-m">Supporting evidence can be uploaded</h2><p className="govuk-body">You can add documents to support your report.</p></div></article></div></>; }
+function Unavailable() { return <><h1 className="govuk-heading-xl">Page not found</h1><p className="govuk-body">The page you requested is not available in this prototype.</p><a className="govuk-link" href="/">Return to your reports</a></>; }
 
-function SubmittedAnswers({ answers }: { answers: Answers }) {
-  const answered = sections.flatMap((section) => section.questions.filter((question) => hasAnswer(answers[question.id])).map((question) => ({ section: section.title, question: question.text, answer: answers[question.id] })));
-  return <><a className="govuk-back-link" href="/">Back to your reports</a><p className="govuk-body">Information saved in this browser for the prototype report.</p>{answered.length ? <dl className="govuk-summary-list">{answered.map((item) => <div className="govuk-summary-list__row" key={`${item.section}-${item.question}`}><dt className="govuk-summary-list__key">{item.question}<span className="govuk-hint">{item.section}</span></dt><dd className="govuk-summary-list__value">{Array.isArray(item.answer) ? item.answer.join(", ") : item.answer}</dd></div>)}</dl> : <p className="govuk-body">No answers have been saved yet.</p>}</>;
-}
+export default DcrsApp;
