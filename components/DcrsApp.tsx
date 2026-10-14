@@ -66,7 +66,7 @@ function DcrsApp({ initialPath }: { initialPath: string }) {
   const [store, setStore] = useState<Store>(emptyStore);
   const [ready, setReady] = useState(false);
   const path = `/${initialPath.split("/").filter(Boolean).join("/")}`;
-  const unread = 2;
+  const unread = 2 + (store.initialAssessmentPassed ? 1 : 0);
   useEffect(() => { try { const saved = localStorage.getItem(storageKey); if (saved) setStore({ ...emptyStore, ...JSON.parse(saved) as Partial<Store> }); } catch { /* Keep the prototype usable if storage is unavailable. */ } setReady(true); }, []);
   const save = (next: Store) => { setStore(next); try { localStorage.setItem(storageKey, JSON.stringify(next)); } catch { /* Session state still works. */ } };
   const update = (id: string, value: Answer) => save({ ...store, answers: { ...store.answers, [id]: value } });
