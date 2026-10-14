@@ -31,11 +31,19 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus { outline: 3px 
 .dcrs-stage-progress__track { height: 10px; background: #f3f2f1; }
 .dcrs-stage-progress__track span { display: block; height: 100%; background: #00703c; }
 .dcrs-stage-list, .dcrs-essential-list { margin: 0 0 24px; padding: 0; list-style: none; }
-.dcrs-stage-list__item { border-top: 1px solid #b1b4b6; }
+.dcrs-stage-list__item { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 2rem; border-top: 1px solid #b1b4b6; padding: 4px 0; }
 .dcrs-stage-list__item:last-child { border-bottom: 1px solid #b1b4b6; }
-.dcrs-stage-list__item > a { display: flex; justify-content: space-between; gap: 16px; padding: 14px 0; text-decoration: none; }
+.dcrs-stage-list__item > a { display: flex; flex: 1; gap: 16px; padding: 14px 0; text-decoration: none; }
 .dcrs-stage-list__item > a:hover span:first-child { text-decoration: underline; }
 .dcrs-stage-list__detail { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; color: #505a5f; text-align: right; font-size: 16px; }
+.dcrs-stage-list__detail .govuk-hint { margin: 0; }
+.dcrs-stage-list__item--divider { border-top: 1px solid #b1b4b6; margin-top: 8px; padding-top: 16px; }
+.dcrs-stage-list__group-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; border-bottom: 1px solid #b1b4b6; padding: 16px 0 8px; font-weight: 700; }
+.dcrs-stage-list__group-heading:first-child { border-top: 0; padding-top: 0; }
+.dcrs-stage-list__group-heading .govuk-hint { margin: 0; font-weight: 400; white-space: nowrap; }
+.dcrs-stage-list__group-heading--summary { align-items: stretch; flex-direction: column; }
+.dcrs-stage-list__group-heading--summary > div { display: flex; justify-content: space-between; gap: 16px; width: 100%; border-top: 1px solid #b1b4b6; padding-top: 8px; }
+.dcrs-stage-list__group-completion { font-weight: 400; text-align: right; }
 .dcrs-status { color: #505a5f; }
 .dcrs-status--completed { color: #00703c; font-weight: 700; }
 .dcrs-status--in-progress { color: #1d70b8; font-weight: 700; }
@@ -46,7 +54,9 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus { outline: 3px 
 .dcrs-submitted-overview { max-width: 760px; }
 .dcrs-submitted-overview__header { display: flex; gap: 16px; align-items: center; margin: 24px 0; padding: 18px; border: 1px solid #bfe3d5; border-radius: 3px; background: #e9f6f0; }
 .dcrs-submitted-overview__header h2, .dcrs-submitted-overview__header p { margin: 0; }
-.dcrs-status-icon { display: inline-grid; place-items: center; flex: 0 0 auto; width: 38px; height: 38px; border-radius: 50%; background: #00703c; color: #fff; font-size: 26px; }
+.dcrs-status-icon { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; width: 16px; height: 16px; border: 2px solid currentColor; border-radius: 50%; font-size: 12px; font-weight: 700; line-height: 1; }
+.dcrs-status-icon--complete { border-color: #00703c; background: #00703c; color: #fff; }
+.dcrs-status-icon--incomplete { color: #505a5f; }
 .dcrs-submission-steps { list-style: none; margin: 12px 0 24px; padding: 0; counter-reset: steps; }
 .dcrs-submission-steps li { position: relative; display: grid; grid-template-columns: 28px 1fr; column-gap: 14px; padding: 0 0 24px 0; counter-increment: steps; }
 .dcrs-submission-steps li::before { content: counter(steps); display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: #768c95; color: #fff; font-weight: 700; grid-row: span 2; }
