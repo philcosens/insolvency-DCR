@@ -43,6 +43,7 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus { outline: 3px 
 .dcrs-stage-list, .dcrs-essential-list { margin: 0 0 20px; padding: 0; list-style: none; }
 .dcrs-essential-progress { margin: 24px 0; }
 .dcrs-essential-list { border-top: 1px solid #b1b4b6; margin-bottom: 32px; }
+.dcrs-overview-essential-list { border-top: 0; }
 .dcrs-essential-list__group-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; border-bottom: 1px solid #b1b4b6; padding: 16px 0 8px; font-weight: 700; }
 .dcrs-essential-list__group-heading:first-child { border-top: 0; padding-top: 0; }
 .dcrs-essential-list__group-heading .govuk-hint { margin: 0; font-weight: 400; white-space: nowrap; }
