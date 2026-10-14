@@ -69,6 +69,15 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus { outline: 3px 
 .dcrs-submitted-overview { max-width: 760px; }
 .dcrs-submitted-overview__header { display: flex; gap: 16px; align-items: center; margin: 24px 0; padding: 18px; border: 1px solid #bfe3d5; border-radius: 3px; background: #e9f6f0; }
 .dcrs-submitted-overview__header h2, .dcrs-submitted-overview__header p { margin: 0; }
+.dcrs-submitted-overview__steps { margin: 0; padding-top: 16px; }
+.dcrs-submitted-overview__step { border-left: 4px solid #b1b4b6; margin: 0; padding: 0 0 32px 32px; }
+.dcrs-submitted-overview__step--complete { border-left-color: #00703c; }
+.dcrs-submitted-overview__step--current { border-left-color: #1d70b8; }
+.dcrs-submitted-overview__step--locked { background: #f3f2f1; border-left-color: #b1b4b6; padding: 16px 16px 16px 32px; }
+.dcrs-submitted-overview__step:last-child { padding-bottom: 16px; }
+.dcrs-submitted-overview__step-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.dcrs-submitted-overview__step-heading h3 { margin-bottom: 8px; }
+.dcrs-submitted-overview__step .govuk-body:last-child { margin-bottom: 0; }
 .dcrs-status-icon { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; width: 16px; height: 16px; border: 2px solid currentColor; border-radius: 50%; font-size: 12px; font-weight: 700; line-height: 1; }
 .dcrs-status-icon--complete { border-color: #00703c; background: #00703c; color: #fff; }
 .dcrs-status-icon--incomplete { color: #505a5f; }
@@ -115,3 +124,4 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus { outline: 3px 
 @media (max-width: 800px) { .dcrs-stage-grid, .dcrs-question-layout { grid-template-columns: 1fr; } .dcrs-question-layout { gap: 24px; } .dcrs-stage-card { padding: 18px; } .dcrs-stage-list__item > a { align-items: flex-start; } .dcrs-company-lookup { margin-top: 30px; } }
 @media (max-width: 480px) { .govuk-header__content { align-items: flex-start; flex-direction: column; gap: 0; padding: 10px 0; } .dcrs-notifications-link { padding-top: 0; } .dcrs-stage-card__header { flex-direction: column; } .dcrs-stage-list__item > a { flex-direction: column; gap: 6px; } .dcrs-stage-list__detail { align-items: flex-start; text-align: left; } }
 @media (max-width: 600px) { .dcrs-essential-list__item { align-items: flex-start; flex-wrap: wrap; gap: 8px; } .dcrs-essential-list__link { flex-basis: calc(100% - 28px); } .dcrs-essential-list__status { margin-left: 0; } .dcrs-essential-list__arrow { margin-left: auto; } }
+@media (max-width: 600px) { .dcrs-submitted-overview__header, .dcrs-submitted-overview__step-heading { display: block; } .dcrs-submitted-overview__step-heading .govuk-tag { display: inline-block; margin-bottom: 8px; } }
