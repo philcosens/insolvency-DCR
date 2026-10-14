@@ -22,6 +22,12 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus { outline: 3px 
 .dcrs-case-heading { display: flex; flex-direction: column; gap: 4px; }
 .dcrs-case-heading span { color: #505a5f; font-size: 1rem; }
 .dcrs-stage-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: start; margin: 32px 0; }
+.dcrs-final-stage-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px; margin: 32px 0 48px; }
+.dcrs-final-stage-card { min-height: 300px; border: 1px solid #b1b4b6; border-left: 8px solid #b1b4b6; border-radius: 4px; padding: 24px; background: #f3f2f1; }
+.dcrs-final-stage-card__header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
+.dcrs-final-stage-card__header > div { display: flex; align-items: center; gap: 16px; }
+.dcrs-final-stage-card__header h2 { margin: 0; }
+.dcrs-final-stage-card .dcrs-stage-card__number { background: #505a5f; }
 .dcrs-stage-card { border: 1px solid #b1b4b6; border-top: 5px solid #1d70b8; border-radius: 2px; padding: 20px; }
 .dcrs-stage-card--submitted { border-top-color: #00703c; background: #f3f2f1; }
 .dcrs-stage-card--locked { border-top-color: #b1b4b6; background: #f3f2f1; }
@@ -121,7 +127,7 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus { outline: 3px 
 .dcrs-notification:last-child { border-bottom: 1px solid #b1b4b6; }
 .dcrs-notification h2 { margin: 12px 0 8px; }
 .govuk-list--bullet { margin-top: 12px; }
-@media (max-width: 800px) { .dcrs-stage-grid, .dcrs-question-layout { grid-template-columns: 1fr; } .dcrs-question-layout { gap: 24px; } .dcrs-stage-card { padding: 18px; } .dcrs-stage-list__item > a { align-items: flex-start; } .dcrs-company-lookup { margin-top: 30px; } }
+@media (max-width: 800px) { .dcrs-stage-grid, .dcrs-final-stage-grid, .dcrs-question-layout { grid-template-columns: 1fr; } .dcrs-question-layout { gap: 24px; } .dcrs-stage-card { padding: 18px; } .dcrs-final-stage-card { min-height: 0; } .dcrs-stage-list__item > a { align-items: flex-start; } .dcrs-company-lookup { margin-top: 30px; } }
 @media (max-width: 480px) { .govuk-header__content { align-items: flex-start; flex-direction: column; gap: 0; padding: 10px 0; } .dcrs-notifications-link { padding-top: 0; } .dcrs-stage-card__header { flex-direction: column; } .dcrs-stage-list__item > a { flex-direction: column; gap: 6px; } .dcrs-stage-list__detail { align-items: flex-start; text-align: left; } }
 @media (max-width: 600px) { .dcrs-essential-list__item { align-items: flex-start; flex-wrap: wrap; gap: 8px; } .dcrs-essential-list__link { flex-basis: calc(100% - 28px); } .dcrs-essential-list__status { margin-left: 0; } .dcrs-essential-list__arrow { margin-left: auto; } }
 @media (max-width: 600px) { .dcrs-submitted-overview__header, .dcrs-submitted-overview__step-heading { display: block; } .dcrs-submitted-overview__step-heading .govuk-tag { display: inline-block; margin-bottom: 8px; } }
