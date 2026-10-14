@@ -83,6 +83,7 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus { outline: 3px 
 .dcrs-question-navigation__section--current > a, .dcrs-question-navigation__questions a[aria-current="page"] { color: #1d70b8; font-weight: 700; text-decoration: none !important; }
 .dcrs-question-content { min-width: 0; max-width: 720px; }
 .dcrs-question-content form { max-width: 680px; }
+.dcrs-company-lookup { margin-top: 40px; }
 .dcrs-uploaded-evidence-list { max-width: 760px; border-top: 1px solid #b1b4b6; }
 .dcrs-uploaded-evidence-list li { display: flex; justify-content: space-between; gap: 16px; align-items: center; padding: 14px 0; border-bottom: 1px solid #b1b4b6; }
 .dcrs-uploaded-evidence-list li span { display: flex; flex-direction: column; gap: 4px; }
@@ -92,5 +93,5 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus { outline: 3px 
 .dcrs-notification:last-child { border-bottom: 1px solid #b1b4b6; }
 .dcrs-notification h2 { margin: 12px 0 8px; }
 .govuk-list--bullet { margin-top: 12px; }
-@media (max-width: 800px) { .dcrs-stage-grid, .dcrs-question-layout { grid-template-columns: 1fr; } .dcrs-question-layout { gap: 24px; } .dcrs-stage-card { padding: 18px; } .dcrs-stage-list__item > a { align-items: flex-start; } }
+@media (max-width: 800px) { .dcrs-stage-grid, .dcrs-question-layout { grid-template-columns: 1fr; } .dcrs-question-layout { gap: 24px; } .dcrs-stage-card { padding: 18px; } .dcrs-stage-list__item > a { align-items: flex-start; } .dcrs-company-lookup { margin-top: 30px; } }
 @media (max-width: 480px) { .govuk-header__content { align-items: flex-start; flex-direction: column; gap: 0; padding: 10px 0; } .dcrs-notifications-link { padding-top: 0; } .dcrs-stage-card__header { flex-direction: column; } .dcrs-stage-list__item > a { flex-direction: column; gap: 6px; } .dcrs-stage-list__detail { align-items: flex-start; text-align: left; } }
