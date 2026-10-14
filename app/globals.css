@@ -22,7 +22,7 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus { outline: 3px 
 .dcrs-case-heading { display: flex; flex-direction: column; gap: 4px; }
 .dcrs-case-heading span { color: #505a5f; font-size: 1rem; }
 .dcrs-stage-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: start; margin: 32px 0; }
-.dcrs-stage-card { border: 1px solid #b1b4b6; border-top: 5px solid #1d70b8; border-radius: 2px; padding: 24px; }
+.dcrs-stage-card { border: 1px solid #b1b4b6; border-top: 5px solid #1d70b8; border-radius: 2px; padding: 20px; }
 .dcrs-stage-card--submitted { border-top-color: #00703c; background: #f3f2f1; }
 .dcrs-stage-card--locked { border-top-color: #b1b4b6; background: #f3f2f1; }
 .dcrs-stage-card__header { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; margin-bottom: 16px; }
