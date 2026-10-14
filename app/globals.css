@@ -78,6 +78,7 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus { outline: 3px 
 .dcrs-question-navigation__section--current > a { color: #1d70b8; font-weight: 700; }
 .dcrs-question-navigation__questions { margin: 0 !important; padding: 0 !important; }
 .dcrs-question-navigation__questions li { display: flex; padding: 8px 0 8px 16px; }
+.dcrs-question-navigation__questions li:empty { display: none; }
 .dcrs-question-navigation__questions li::before { content: "—"; flex: 0 0 auto; margin-left: -20px; margin-right: 8px; color: #505a5f; }
 .dcrs-question-navigation__questions a { display: block; flex: 1; color: #1d70b8; font-family: "GDS Transport", arial, sans-serif; font-size: 19px; line-height: 1.31579; text-decoration: none !important; }
 .dcrs-question-navigation__section--current > a, .dcrs-question-navigation__questions a[aria-current="page"] { color: #1d70b8; font-weight: 700; text-decoration: none !important; }
