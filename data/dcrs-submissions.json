@@ -580,7 +580,8 @@
         "text": "Is there evidence to show that this person acted as a director of the company?",
         "type": "radio",
         "options": [
-
+          "Yes",
+          "No"
         ],
         "hint": "",
         "required": false,
@@ -619,7 +620,8 @@
         "text": "Is this the corporate body's third or more company failure in the last 5 years?",
         "type": "radio",
         "options": [
-
+          "Yes",
+          "No"
         ],
         "hint": "",
         "required": false,
@@ -645,7 +647,8 @@
         "text": "Has corporate body co-operated with your reasonable enquiries?",
         "type": "radio",
         "options": [
-
+          "Yes",
+          "No"
         ],
         "hint": "",
         "required": false,
@@ -2392,7 +2395,7 @@
       },
       {
         "id": "section-26-4",
-        "text": "Is there a connection between the appointed directors of the company and the disqualified or bankrupt director (e.g., a family relationship)? If so, please provide further details.",
+        "text": "Is there a connection between the appointed directors of the company and the disqualified or bankrupt director (e.g. a family relationship)? If so, please provide further details.",
         "type": "radio",
         "options": [
 
