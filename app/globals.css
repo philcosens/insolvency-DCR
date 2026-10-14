@@ -35,6 +35,16 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus { outline: 3px 
 .dcrs-stage-progress__track { height: 10px; background: #f3f2f1; }
 .dcrs-stage-progress__track span { display: block; height: 100%; background: #00703c; }
 .dcrs-stage-list, .dcrs-essential-list { margin: 0 0 20px; padding: 0; list-style: none; }
+.dcrs-essential-progress { margin: 24px 0; }
+.dcrs-essential-list { border-top: 1px solid #b1b4b6; margin-bottom: 32px; }
+.dcrs-essential-list__group-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; border-bottom: 1px solid #b1b4b6; padding: 16px 0 8px; font-weight: 700; }
+.dcrs-essential-list__group-heading:first-child { border-top: 0; padding-top: 0; }
+.dcrs-essential-list__group-heading .govuk-hint { margin: 0; font-weight: 400; white-space: nowrap; }
+.dcrs-essential-list__item { display: flex; align-items: center; gap: 16px; min-height: 48px; border-bottom: 1px solid #b1b4b6; padding: 8px 0; }
+.dcrs-essential-list__link { flex: 1; min-width: 0; }
+.dcrs-essential-list__status { display: flex; flex: 0 0 auto; align-items: center; gap: 8px; text-align: right; }
+.dcrs-essential-list__status .govuk-hint { margin: 0; }
+.dcrs-essential-list__arrow { flex: 0 0 20px; color: #1d70b8; font-size: 32px; line-height: 1; text-align: right; }
 .dcrs-stage-list__item { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 2rem; padding: 6px 0; }
 .dcrs-stage-list__item > a { display: flex; flex: 1; gap: 16px; padding: 0; }
 .dcrs-stage-list__item > a:hover span:first-child { text-decoration: underline; }
@@ -96,3 +106,4 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus { outline: 3px 
 .govuk-list--bullet { margin-top: 12px; }
 @media (max-width: 800px) { .dcrs-stage-grid, .dcrs-question-layout { grid-template-columns: 1fr; } .dcrs-question-layout { gap: 24px; } .dcrs-stage-card { padding: 18px; } .dcrs-stage-list__item > a { align-items: flex-start; } .dcrs-company-lookup { margin-top: 30px; } }
 @media (max-width: 480px) { .govuk-header__content { align-items: flex-start; flex-direction: column; gap: 0; padding: 10px 0; } .dcrs-notifications-link { padding-top: 0; } .dcrs-stage-card__header { flex-direction: column; } .dcrs-stage-list__item > a { flex-direction: column; gap: 6px; } .dcrs-stage-list__detail { align-items: flex-start; text-align: left; } }
+@media (max-width: 600px) { .dcrs-essential-list__item { align-items: flex-start; flex-wrap: wrap; gap: 8px; } .dcrs-essential-list__link { flex-basis: calc(100% - 28px); } .dcrs-essential-list__status { margin-left: 0; } .dcrs-essential-list__arrow { margin-left: auto; } }
