@@ -72,15 +72,15 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus { outline: 3px 
 .dcrs-question-navigation { min-width: 0; }
 .dcrs-question-navigation ul { list-style: none; margin: 0; padding: 0; }
 .x-govuk-sub-navigation__section-item { margin: 0; padding: 12px 0; }
-.x-govuk-sub-navigation__section-item > a { display: block; color: #1d70b8; font-family: "GDS Transport", arial, sans-serif; font-size: 19px; line-height: 1.31579; text-decoration: none; }
+.x-govuk-sub-navigation__section-item > a, .dcrs-question-navigation .x-govuk-sub-navigation__link { display: block; color: #1d70b8; font-family: "GDS Transport", arial, sans-serif; font-size: 19px; line-height: 1.31579; text-decoration: none !important; }
 .x-govuk-sub-navigation__section-item > a:hover { text-decoration: underline; }
 .dcrs-question-navigation__section--current { border-left: 4px solid #1d70b8; padding-left: 12px; }
 .dcrs-question-navigation__section--current > a { color: #1d70b8; font-weight: 700; }
 .dcrs-question-navigation__questions { margin: 0 !important; padding: 0 !important; }
 .dcrs-question-navigation__questions li { display: flex; padding: 8px 0 8px 16px; }
 .dcrs-question-navigation__questions li::before { content: "—"; flex: 0 0 auto; margin-left: -20px; margin-right: 8px; color: #505a5f; }
-.dcrs-question-navigation__questions a { display: block; flex: 1; color: #1d70b8; font-size: 19px; line-height: 1.31579; }
-.dcrs-question-navigation__questions a[aria-current="page"] { color: #1d70b8; font-weight: 700; }
+.dcrs-question-navigation__questions a { display: block; flex: 1; color: #1d70b8; font-family: "GDS Transport", arial, sans-serif; font-size: 19px; line-height: 1.31579; text-decoration: none !important; }
+.dcrs-question-navigation__section--current > a, .dcrs-question-navigation__questions a[aria-current="page"] { color: #1d70b8; font-weight: 700; text-decoration: none !important; }
 .dcrs-question-content { min-width: 0; max-width: 720px; }
 .dcrs-question-content form { max-width: 680px; }
 .dcrs-uploaded-evidence-list { max-width: 760px; border-top: 1px solid #b1b4b6; }
