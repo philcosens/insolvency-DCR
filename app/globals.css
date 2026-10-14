@@ -78,7 +78,14 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus { outline: 3px 
 .dcrs-submission-steps li:not(:last-child)::after { content: ""; position: absolute; left: 13px; top: 28px; bottom: 0; border-left: 2px solid #b1b4b6; }
 .dcrs-submission-steps strong, .dcrs-submission-steps span { grid-column: 2; }
 .dcrs-submission-steps span { color: #505a5f; }
-.dcrs-submission-banner { max-width: 760px; }
+.dcrs-submission-banner { max-width: 760px; border-color: #00703c; }
+.dcrs-submission-banner .govuk-notification-banner__header { background: #00703c; }
+.dcrs-submission-steps.govuk-list--number { max-width: 720px; list-style: decimal; margin: 0 0 32px; padding-left: 40px; }
+.dcrs-submission-steps.govuk-list--number li { display: list-item; padding: 0; }
+.dcrs-submission-steps.govuk-list--number li::before, .dcrs-submission-steps.govuk-list--number li::after { content: none; }
+.dcrs-submission-steps.govuk-list--number .govuk-heading-s, .dcrs-submission-steps.govuk-list--number .govuk-body { margin-bottom: 8px; }
+.dcrs-submission-actions { border-top: 1px solid #b1b4b6; margin-top: 32px; padding-top: 24px; }
+.dcrs-submission-actions .govuk-button { margin-bottom: 0; }
 .dcrs-question-layout { display: grid; grid-template-columns: minmax(18rem, 22rem) minmax(0, 1fr); gap: 48px; align-items: start; margin-top: 28px; }
 .dcrs-question-navigation { min-width: 0; }
 .dcrs-question-navigation ul { list-style: none; margin: 0; padding: 0; }
