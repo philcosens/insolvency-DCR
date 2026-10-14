@@ -1,6 +1,6 @@
 * { box-sizing: border-box; }
 :root { color-scheme: light; }
-body { margin: 0; background: #fff; color: #0b0c0c; }
+body { margin: 0; background: #fff; color: #0b0c0c; font-family: "GDS Transport", arial, sans-serif; }
 button, input, textarea, select { font: inherit; }
 a:focus, button:focus, input:focus, textarea:focus, select:focus { outline: 3px solid transparent; box-shadow: 0 -2px #ffdd00, 0 4px #0b0c0c; }
 .dcr-site-width-container, .govuk-width-container.dcr-site-width-container, .dcr .govuk-width-container { max-width: 1020px; }
@@ -41,7 +41,8 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus { outline: 3px 
 .dcrs-essential-list__group-heading:first-child { border-top: 0; padding-top: 0; }
 .dcrs-essential-list__group-heading .govuk-hint { margin: 0; font-weight: 400; white-space: nowrap; }
 .dcrs-essential-list__item { display: flex; align-items: center; gap: 16px; min-height: 48px; border-bottom: 1px solid #b1b4b6; padding: 8px 0; }
-.dcrs-essential-list__link { flex: 1; min-width: 0; }
+.dcrs-essential-list__link { flex: 1; min-width: 0; color: #1d70b8; font-family: "GDS Transport", arial, sans-serif; font-size: 19px; line-height: 1.31579; text-decoration: none; }
+.dcrs-essential-list__link:hover { text-decoration: underline; }
 .dcrs-essential-list__status { display: flex; flex: 0 0 auto; align-items: center; gap: 8px; text-align: right; }
 .dcrs-essential-list__status .govuk-hint { margin: 0; }
 .dcrs-essential-list__arrow { flex: 0 0 20px; color: #1d70b8; font-size: 32px; line-height: 1; text-align: right; }
