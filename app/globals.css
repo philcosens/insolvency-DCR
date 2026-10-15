@@ -44,6 +44,7 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus { outline: 3px 
 .dcrs-essential-progress { margin: 24px 0; }
 .dcrs-essential-list { border-top: 1px solid #b1b4b6; margin-bottom: 32px; }
 .dcrs-overview-essential-list { border-top: 0; }
+.dcrs-overview-essential-list .dcrs-essential-list__item { border-bottom: 0; }
 .dcrs-essential-list__group-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; border-bottom: 1px solid #b1b4b6; padding: 16px 0 8px; font-weight: 700; }
 .dcrs-essential-list__group-heading:first-child { border-top: 0; padding-top: 0; }
 .dcrs-essential-list__group-heading .govuk-hint { margin: 0; font-weight: 400; white-space: nowrap; }
@@ -66,6 +67,7 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus { outline: 3px 
 .dcrs-stage-list__group-heading--summary > div { display: flex; justify-content: space-between; gap: 16px; width: 100%; border-top: 1px solid #b1b4b6; padding-top: 8px; }
 .dcrs-stage-list__group-completion { font-weight: 400; text-align: right; }
 .dcrs-stage-card__action { display: block; width: 100% !important; max-width: none; margin-bottom: 0 !important; box-sizing: border-box; }
+.dcrs-stage-card .dcrs-stage-progress { margin-top: 12px; }
 .dcrs-status { color: #505a5f; }
 .dcrs-status--completed { color: #00703c; font-weight: 700; }
 .dcrs-status--in-progress { color: #1d70b8; font-weight: 700; }
