@@ -121,6 +121,9 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus { outline: 3px 
 .dcrs-question-navigation__section--current > a, .dcrs-question-navigation__questions a[aria-current="page"] { color: #1d70b8; font-weight: 700; text-decoration: none !important; }
 .dcrs-question-content { min-width: 0; max-width: 720px; }
 .dcrs-question-content form { max-width: 680px; }
+.dcrs-dictation { margin-top: 8px; }
+.dcrs-dictation__button { margin-bottom: 8px; }
+.dcrs-dictation__status { margin-bottom: 8px; }
 .dcrs-company-lookup { margin-top: 40px; }
 .dcrs-uploaded-evidence-list { max-width: 760px; border-top: 1px solid #b1b4b6; }
 .dcrs-uploaded-evidence-list li { display: flex; justify-content: space-between; gap: 16px; align-items: center; padding: 14px 0; border-bottom: 1px solid #b1b4b6; }

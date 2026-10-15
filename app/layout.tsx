@@ -14,6 +14,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <link rel="stylesheet" href="/stylesheets/govuk-frontend.min.css" />
       </head>
       <body className="govuk-template__body">{children}</body>
+      <script src="/javascripts/dcrs-dictation.js" defer />
     </html>
   );
 }
